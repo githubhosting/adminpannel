@@ -2,6 +2,7 @@
   "name": "test-simple-react-admin",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://githubhosting.github.io",
   "dependencies": {
     "firebase": "^9.6.4",
     "@material-ui/icons": "4.11.3",
@@ -16,7 +17,6 @@
     "react-scripts": "^5.0.0",
     "source-map-loader": "^3"
   },
-  "homepage": "https://benwinding.github.io/react-admin-firebase/",
   "devDependencies": {
     "concurrently": "4.1.1",
     "cpx": "1.5.0",
@@ -24,11 +24,12 @@
   },
   "scripts": {
     "start": " react-scripts start",
-    "build": "REACT_APP_FIREBASE_CONFIG=`cat ./FIREBASE_CONFIG.json` react-scripts build",
+    "build": "react-scripts build",
     "build-ci": "react-scripts build",
     "cp-dist": "rm -rf ./node_modules/react-admin-firebase/dist && cp -r ../dist ./node_modules/react-admin-firebase/dist",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "browserslist": [
