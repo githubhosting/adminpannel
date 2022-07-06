@@ -79,17 +79,20 @@ export const PostShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
       <TextField source="id" />
-      <TextField source="createdate" />
+      <TextField source="Name" />
+      <TextField source="Cloud" />
+      {/* <TextField source="Cooks" /> */}
+      {/* <TextField source="createdate" />
       <TextField source="lastupdate" />
       <TextField source="title" />
-      <RichTextField source="body" />
+      <RichTextField source="body" /> */}
 
       {/* <ReferenceField label="User Id" source="user_id" reference="users">
         <TextField source="name" />
       </ReferenceField> */}
 
       <ReferenceField label="User Ref" source="user_ref.___refid" reference="Cooks">
-        <TextField source="Name" />
+        <TextField source="Cooks" />
       </ReferenceField>
       {/* Or use the easier <FirebaseReferenceField> */}
       <FirebaseReferenceField

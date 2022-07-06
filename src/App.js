@@ -10,6 +10,8 @@ import {
   CookShow,
   MenuList,
   MenuShow,
+  BlogList,
+  BlogShow,
 } from './users';
 import { Admin, Resource } from 'react-admin';
 import {
@@ -109,7 +111,7 @@ class App extends React.Component {
             edit={UserEdit}
           />
           <Resource
-            name="Cloud_Kitchen"
+            name="Cloud Kitchen"
             icon={UserIcon}
             list={UserList}
             show={UserShow}
@@ -125,10 +127,10 @@ class App extends React.Component {
             edit={UserEdit}
           />
           <Resource
-            name="books"
+            name="Blogs"
             icon={UserIcon}
-            list={UserList}
-            show={UserShow}
+            list={BlogList}
+            show={BlogShow}
             create={UserCreate}
             edit={UserEdit}
           />
