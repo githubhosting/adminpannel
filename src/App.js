@@ -12,6 +12,8 @@ import {
   MenuShow,
   BlogList,
   BlogShow,
+  CookCreate,
+  CookEdit, MenuCreate, MenuEdit, BlogCreate, BlogEdit
 } from './users';
 import { Admin, Resource } from 'react-admin';
 import {
@@ -98,8 +100,8 @@ class App extends React.Component {
             icon={UserIcon}
             list={CookList}
             show={CookShow}
-            create={UserCreate}
-            edit={UserEdit}
+            create={CookCreate}
+            edit={CookEdit}
           />
 
           <Resource
@@ -131,8 +133,8 @@ class App extends React.Component {
             icon={UserIcon}
             list={BlogList}
             show={BlogShow}
-            create={UserCreate}
-            edit={UserEdit}
+            create={BlogCreate}
+            edit={BlogEdit}
           />
         </Admin>
         <EventMonitor />
