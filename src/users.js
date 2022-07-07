@@ -31,13 +31,24 @@ import {
   ArrayField,
   ImageInput,
 } from 'react-admin';
-import { RichTextInput } from 'ra-input-rich-text';
+import { RichTextInput,
+  ArrayInput,
+  SimpleFormIterator,
+  FileInput,
+  FileField,
+ } from 'ra-input-rich-text';
 
 const UserFilter = (props) => (
   <Filter {...props}>
     <TextInput label="Search" source="name" alwaysOn />
   </Filter>
 );
+
+
+
+// ......
+// Users Section
+// ......
 
 export const UserList = (props) => (
   <List {...props} filters={<UserFilter />}>
@@ -52,6 +63,53 @@ export const UserList = (props) => (
     </Datagrid>
   </List>
 );
+export const UserShow = (props) => (
+  <Show {...props}>
+    <SimpleShowLayout>
+      <TextField source="id" />
+      <TextField source="name" />
+      <BooleanField source="isAdmin" />
+      <BooleanField source="isManager.isManager" />
+      <BooleanField source="isManager.Manager" />
+      <BooleanField source="isContent" />
+    </SimpleShowLayout>
+  </Show>
+);
+export const UserCreate = (props) => (
+  <Create {...props}>
+    <SimpleForm>
+      <TextInput source="name" />
+      <TextInput source="phone" />
+      <TextInput source="email" />
+      <BooleanInput source="isAdmin" />
+      <BooleanInput source="isManager.isManager" />
+      <BooleanInput source="isContent" />
+    </SimpleForm>
+  </Create>
+);
+
+export const UserEdit = (props) => (
+  <Edit {...props}>
+    <SimpleForm>
+      <TextInput disabled source="id" />
+      <TextInput disabled source="createdate" />
+      <TextInput disabled source="lastupdate" />
+      <TextInput source="name" />
+      <TextInput source="phone" />
+      <TextInput source="email" />
+      <BooleanInput disabled source="isAdmin" />
+      <BooleanInput disabled source="isManager.isManager" />
+      <BooleanInput disabled source="isContent" />
+    </SimpleForm>
+  </Edit>
+);
+
+
+
+// ......................
+// Blog Section
+// ......................
+
 export const BlogList = (props) => (
   <List {...props} filters={<UserFilter />}>
     <Datagrid>
@@ -65,6 +123,45 @@ export const BlogList = (props) => (
     </Datagrid>
   </List>
 );
+export const BlogShow = (props) => (
+  <Show {...props}>
+    <SimpleShowLayout>
+      <TextField source="id" />
+      <TextField source="Author" />
+      <ImageField source="Image" />
+      <TextField source="Heading" />
+      <TextField source="Content" />
+      <TextField source="Timestamp" />
+    </SimpleShowLayout>
+  </Show>
+);
+export const BlogEdit = (props) => (
+  <Edit {...props}>
+    <SimpleForm>
+      <TextInput disabled source="id" />
+      <TextInput source="Author" />
+      <ImageInput source="Image" />
+      <TextInput source="Heading" />
+      <RichTextInput source="Content" />
+    </SimpleForm>
+  </Edit>
+);
+export const BlogCreate = (props) => (
+  <Create {...props}>
+    <SimpleForm>
+      <TextInput disabled source="id" />
+      <TextInput source="Author" />
+      <ImageInput source="Image" />
+      <TextInput source="Heading" />
+      <RichTextInput source="Content" />
+    </SimpleForm>
+  </Create>
+);
+
+// ......................
+// Menu Section
+// ......................
+
 export const MenuList = (props) => (
   <List {...props} filters={<UserFilter />}>
     <Datagrid>
@@ -82,6 +179,17 @@ export const MenuList = (props) => (
     </Datagrid>
   </List>
 );
+export const MenuShow = (props) => (
+  <Show {...props}>
+    <SimpleShowLayout>
+      <TextField source="id" />
+      <TextField source="name" />
+      <TextField source="isAdmin" />
+    </SimpleShowLayout>
+  </Show>
+);
+
+
 export const UserList1 = (props) => (
   <List {...props} filters={<UserFilter />}>
     <Datagrid>
@@ -96,14 +204,18 @@ export const UserList1 = (props) => (
   </List>
 );
 
+
+// ...........
+// Cook Section
+// ...........
+
 export const CookList = (props) => (
   <List {...props} filters={<UserFilter />}>
     <Datagrid>
       <TextField source="Name" />
       <TextField source="Region" />
       <TextField source="State" />
-      <TextField source="Ratings" />
-
+      <NumberField source="Ratings" />
       {/* <TextField source="lastupdate" /> */}
       <ShowButton label="" />
       <EditButton label="" />
@@ -112,49 +224,13 @@ export const CookList = (props) => (
   </List>
 );
 
-export const UserShow = (props) => (
-  <Show {...props}>
-    <SimpleShowLayout>
-      <TextField source="id" />
-      <TextField source="name" />
-      <TextField source="isAdmin" />
-      <TextField source="isManager.isManager" />
-      <TextField source="isManager.Manager" />
-      <TextField source="isContent" />
-    </SimpleShowLayout>
-  </Show>
-);
-
-export const MenuShow = (props) => (
-  <Show {...props}>
-    <SimpleShowLayout>
-      <TextField source="id" />
-      <TextField source="name" />
-      <TextField source="isAdmin" />
-    </SimpleShowLayout>
-  </Show>
-);
-
-export const UserCreate = (props) => (
-  <Create {...props}>
-    <SimpleForm>
-      <TextInput source="name" />
-      <TextInput source="phone" />
-      <TextInput source="email" />
-      <BooleanInput source="isAdmin" />
-      <BooleanInput source="isManager.isManager" />
-      <BooleanInput source="isContent" />
-    </SimpleForm>
-  </Create>
-);
-
 export const CookShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
       <TextField source="id" />
       <TextField source="Name" />
       <TextField source="Cloud" />
-      <TextField source="Ratings" />
+      <NumberField source="Ratings" />
       <TextField source="Region" />
       <TextField source="State" />
       <TextField source="Speciality" />
@@ -202,53 +278,5 @@ export const UserCreated = (props) => (
   </Create>
 );
 
-export const BlogShow = (props) => (
-  <Show {...props}>
-    <SimpleShowLayout>
-      <TextField source="id" />
-      <TextField source="Author" />
-      <ImageField source="Image" />
-      <TextField source="Heading" />
-      <TextField source="Content" />
-      <TextField source="Timestamp" />
-    </SimpleShowLayout>
-  </Show>
-);
-export const BlogEdit = (props) => (
-  <Edit {...props}>
-    <SimpleForm>
-      <TextInput disabled source="id" />
-      <TextInput source="Author" />
-      <ImageInput source="Image" />
-      <TextInput source="Heading" />
-      <RichTextInput source="Content" />
-    </SimpleForm>
-  </Edit>
-);
-export const BlogCreate = (props) => (
-  <Create {...props}>
-    <SimpleForm>
-      <TextInput disabled source="id" />
-      <TextInput source="Author" />
-      <ImageInput source="Image" />
-      <TextInput source="Heading" />
-      <RichTextInput source="Content" />
-    </SimpleForm>
-  </Create>
-);
 
-export const UserEdit = (props) => (
-  <Edit {...props}>
-    <SimpleForm>
-      <TextInput disabled source="id" />
-      <TextInput disabled source="createdate" />
-      <TextInput disabled source="lastupdate" />
-      <TextInput source="name" />
-      <TextInput source="phone" />
-      <TextInput source="email" />
-      <BooleanInput disabled source="isAdmin" />
-      <BooleanInput disabled source="isManager.isManager" />
-      <BooleanInput disabled source="isContent" />
-    </SimpleForm>
-  </Edit>
-);
+
