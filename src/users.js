@@ -113,8 +113,7 @@ export const BlogList = (props) => (
     <Datagrid>
       <TextField source="Author" />
       <TextField source="Timestamp" />
-      <TextField source="createdate" />
-      <TextField source="lastupdate" />
+      {/* <TextField source="createdate" /> */}
       <ShowButton label="" />
       <EditButton label="" />
       <DeleteButton label="" redirect={false} />
@@ -128,8 +127,9 @@ export const BlogShow = (props) => (
       <TextField source="Author" />
       <ImageField source="Image" />
       <TextField source="Heading" />
-      <TextField source="Content" />
-      <TextField source="Timestamp" />
+      <RichTextField source="Content" />
+      <DateField source="Timestamp" />
+      <TextField source="lastupdate" />
     </SimpleShowLayout>
   </Show>
 );
@@ -148,7 +148,7 @@ export const BlogEdit = (props) => (
 export const BlogCreate = (props) => (
   <Create {...props}>
     <SimpleForm>
-      <TextInput disabled source="id" />
+      {/* <TextInput disabled source="id" /> */}
       <TextInput source="Author" />
       <TextInput source="Heading" />
       <RichTextInput source="Content" />
