@@ -13,7 +13,11 @@ import {
   BlogList,
   BlogShow,
   CookCreate,
-  CookEdit, MenuCreate, MenuEdit, BlogCreate, BlogEdit
+  CookEdit,
+  MenuCreate,
+  MenuEdit,
+  BlogCreate,
+  BlogEdit,
 } from './users';
 import { Admin, Resource } from 'react-admin';
 import {
@@ -21,6 +25,7 @@ import {
   FirebaseAuthProvider,
 } from 'react-admin-firebase';
 
+import styles from './styles.css';
 import firebase from 'firebase/compat/app';
 
 import UserIcon from '@material-ui/icons/People';
@@ -72,13 +77,6 @@ class App extends React.Component {
           dataProvider={dataProvider}
           authProvider={authProvider}
         >
-          <Resource
-            name="Managers"
-            list={PostList}
-            show={PostShow}
-            create={PostCreate}
-            edit={PostEdit}
-          />
           {/* <Resource
             name="Users"
             icon={UserIcon}
@@ -135,6 +133,13 @@ class App extends React.Component {
             show={BlogShow}
             create={BlogCreate}
             edit={BlogEdit}
+          />
+          <Resource
+            name="Managers"
+            list={PostList}
+            show={PostShow}
+            create={PostCreate}
+            edit={PostEdit}
           />
         </Admin>
         <EventMonitor />

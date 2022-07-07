@@ -1,5 +1,6 @@
 // in src/User.js
 import * as React from 'react';
+import styles from './styles.css';
 // tslint:disable-next-line:no-var-requires
 import {
   Datagrid,
@@ -31,20 +32,19 @@ import {
   ArrayField,
   ImageInput,
 } from 'react-admin';
-import { RichTextInput,
+import {
+  RichTextInput,
   ArrayInput,
   SimpleFormIterator,
   FileInput,
   FileField,
- } from 'ra-input-rich-text';
+} from 'ra-input-rich-text';
 
 const UserFilter = (props) => (
   <Filter {...props}>
     <TextInput label="Search" source="name" alwaysOn />
   </Filter>
 );
-
-
 
 // ......
 // Users Section
@@ -103,8 +103,6 @@ export const UserEdit = (props) => (
     </SimpleForm>
   </Edit>
 );
-
-
 
 // ......................
 // Blog Section
@@ -189,7 +187,6 @@ export const MenuShow = (props) => (
   </Show>
 );
 
-
 export const UserList1 = (props) => (
   <List {...props} filters={<UserFilter />}>
     <Datagrid>
@@ -203,7 +200,6 @@ export const UserList1 = (props) => (
     </Datagrid>
   </List>
 );
-
 
 // ...........
 // Cook Section
@@ -277,6 +273,3 @@ export const UserCreated = (props) => (
     </SimpleForm>
   </Create>
 );
-
-
-

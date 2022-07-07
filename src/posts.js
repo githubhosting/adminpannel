@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Datagrid,
   List,
@@ -24,9 +24,12 @@ import {
   ArrayInput,
   SimpleFormIterator,
   DateInput,
-} from "react-admin";
-import { RichTextInput } from "ra-input-rich-text";
-import { FirebaseReferenceField, FirebaseReferenceInput } from './FirebaseReferenceFields';
+} from 'react-admin';
+import { RichTextInput } from 'ra-input-rich-text';
+import {
+  FirebaseReferenceField,
+  FirebaseReferenceInput,
+} from './FirebaseReferenceFields';
 
 // const PostFilter = (props) => (
 //   <Filter {...props}>
@@ -47,7 +50,7 @@ import { FirebaseReferenceField, FirebaseReferenceInput } from './FirebaseRefere
 //   </Filter>
 // );
 
-export const  PostList = (props) => (
+export const PostList = (props) => (
   <List
     {...props}
     // filters={<ReferenceFilter />}
@@ -60,7 +63,11 @@ export const  PostList = (props) => (
       <TextField source="updatedby" />
       <TextField source="createdby" />
       <RichTextField source="body" />
-      <ReferenceField label="User Ref" source="user_ref.___refid" reference="Cooks">
+      <ReferenceField
+        label="User Ref"
+        source="user_ref.___refid"
+        reference="Cooks"
+      >
         <TextField source="name" />
       </ReferenceField>
 
@@ -91,7 +98,11 @@ export const PostShow = (props) => (
         <TextField source="name" />
       </ReferenceField> */}
 
-      <ReferenceField label="User Ref" source="user_ref.___refid" reference="Cooks">
+      <ReferenceField
+        label="User Ref"
+        source="user_ref.___refid"
+        reference="Cooks"
+      >
         <TextField source="Cooks" />
       </ReferenceField>
       {/* Or use the easier <FirebaseReferenceField> */}
@@ -118,7 +129,7 @@ export const PostCreate = (props) => (
       <TextInput source="id" />
       <TextInput source="Name" />
       <RichTextInput source="body" />
-      <DateInput source="date" parse={val => new Date(val)} />
+      <DateInput source="date" parse={(val) => new Date(val)} />
       <ReferenceInput
         label="Cooks   Id"
         source="user_id"
