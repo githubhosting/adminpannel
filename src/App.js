@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { PostList, PostShow, PostCreate, PostEdit } from './posts';
+import { PostList, PostShow, PostCreate, PostEdit, ManagerShow } from './posts';
+
 import {
   UserList,
   UserShow,
@@ -28,7 +29,16 @@ import {
 import styles from './styles.css';
 import firebase from 'firebase/compat/app';
 
-import UserIcon from '@material-ui/icons/People';
+import CustomerIcon from '@material-ui/icons/People';
+import BlogIcon from '@material-ui/icons/Book';
+import MenuIcon from '@material-ui/icons/Menu';
+import UserIcon from '@material-ui/icons/Person';
+import ManagerIcon from '@material-ui/icons/SupervisorAccount';
+import CookIcon from '@material-ui/icons/Restaurant';
+import SoupKitchenIcon from '@material-ui/icons/Kitchen'; 
+// import SoupKitchenIcon from '@mui/icons-material/SoupKitchen';  
+
+
 import CommentIcon from '@material-ui/icons/Comment';
 
 import * as Posts from './posts';
@@ -45,6 +55,13 @@ import EventMonitor from './EventMonitor';
 //   console.error('Error parsing (maybe quotes aren\'t escaped?): ', {REACT_APP_FIREBASE_CONFIG: process.env.REACT_APP_FIREBASE_CONFIG}, error);
 // }
 import { firebaseConfig } from './FIREBASE_CONFIG';
+import { defaultTheme } from 'react-admin';
+const theme = {
+    ...defaultTheme,
+    palette: {
+        mode: 'dark', // Switching the dark mode on is a single property value change.
+    },
+};
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
@@ -74,6 +91,7 @@ class App extends React.Component {
       <>
         <Admin
           loginPage={CustomLoginPage}
+          theme={theme}
           dataProvider={dataProvider}
           authProvider={authProvider}
         >
@@ -95,7 +113,7 @@ class App extends React.Component {
           />
           <Resource
             name="Cooks"
-            icon={UserIcon}
+            icon={CookIcon}
             list={CookList}
             show={CookShow}
             create={CookCreate}
@@ -104,7 +122,7 @@ class App extends React.Component {
 
           <Resource
             name="customers"
-            icon={UserIcon}
+            icon={CustomerIcon}
             list={UserList}
             show={UserShow}
             create={UserCreate}
@@ -112,7 +130,7 @@ class App extends React.Component {
           />
           <Resource
             name="Cloud Kitchen"
-            icon={UserIcon}
+            icon={SoupKitchenIcon}
             list={UserList}
             show={UserShow}
             create={UserCreate}
@@ -120,7 +138,7 @@ class App extends React.Component {
           />
           <Resource
             name="Menu"
-            icon={UserIcon}
+            icon={MenuIcon}
             list={MenuList}
             show={MenuShow}
             create={UserCreate}
@@ -128,7 +146,7 @@ class App extends React.Component {
           />
           <Resource
             name="Blogs"
-            icon={UserIcon}
+            icon={BlogIcon}
             list={BlogList}
             show={BlogShow}
             create={BlogCreate}
@@ -136,8 +154,9 @@ class App extends React.Component {
           />
           <Resource
             name="Managers"
+            icon={ManagerIcon}
             list={PostList}
-            show={PostShow}
+            show={ManagerShow}
             create={PostCreate}
             edit={PostEdit}
           />

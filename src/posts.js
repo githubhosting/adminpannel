@@ -22,8 +22,12 @@ import {
   FileInput,
   FileField,
   ArrayInput,
+  ReferenceArrayField,
   SimpleFormIterator,
   DateInput,
+  ArrayField,
+  SimpleList,
+  SelectField,
 } from 'react-admin';
 import { RichTextInput } from 'ra-input-rich-text';
 import {
@@ -123,37 +127,82 @@ export const PostShow = (props) => (
   </Show>
 );
 
+export const ManagerShow = (props) => (
+  <Show {...props}>
+    <SimpleShowLayout>
+      <TextField source="id" />
+      <TextField source="Name" />
+      <TextField source="Cloud" />
+      <TextField source="Cooks" />
+
+      <ArrayField source="Cooks">
+        <ReferenceArrayField reference="Cooks" label="Cooks Id">
+          <SimpleList>
+            <TextField source="Name" />
+          </SimpleList>
+        </ReferenceArrayField>
+      </ArrayField>
+
+      <ReferenceField
+        label="User Ref"
+        source="user_ref.___refid"
+        reference="Cooks"
+      >
+        <TextField source="Cooks" />
+      </ReferenceField>
+      {/* Or use the easier <FirebaseReferenceField> */}
+      <FirebaseReferenceField
+        label="User (Reference Doc)"
+        source="user_ref"
+        reference="Cooks"
+      >
+        <TextField source="Name" />
+      </FirebaseReferenceField>
+
+      <FileField
+        source="files_multiple.src"
+        title="files_multiple.title"
+        multiple
+      />
+    </SimpleShowLayout>
+  </Show>
+);
+
 export const PostCreate = (props) => (
   <Create {...props}>
     <SimpleForm>
-      <TextInput source="id" />
+      {/* <TextInput source="id" /> */}
       <TextInput source="Name" />
-      <RichTextInput source="body" />
-      <DateInput source="date" parse={(val) => new Date(val)} />
-      <ReferenceInput
+      {/* <RichTextInput source="body" /> */}
+      {/* <DateInput source="date" parse={(val) => new Date(val)} /> */}
+      {/* <ReferenceInput
         label="Cooks   Id"
         source="user_id"
         reference="Cooks"
         // filter={{ isAdmin: true }}
       >
         <SelectInput optionText="Name" />
-      </ReferenceInput>
-      <ReferenceInput
+      </ReferenceInput> */}
+
+      {/* <ReferenceInput
         label="User Ref"
         source="user_ref.___refid"
         reference="users"
       >
         <SelectInput optionText="name" />
-      </ReferenceInput>
+      </ReferenceInput> */}
+
       {/* Or use the easier <FirebaseReferenceInput> */}
-      <FirebaseReferenceInput
+
+      {/* <FirebaseReferenceInput
         label="User Ref (Firebase)"
         source="user_ref"
-        reference="users"
+        reference="Users"
       >
         <SelectInput optionText="name" />
-      </FirebaseReferenceInput>
-      <FileInput source="files_multiple" multiple label="Files with (multiple)">
+      </FirebaseReferenceInput> */}
+
+      {/* <FileInput source="files_multiple" multiple label="Files with (multiple)">
         <FileField source="src" title="title" />
       </FileInput>
       <ArrayInput source="files">
@@ -162,15 +211,32 @@ export const PostCreate = (props) => (
             <FileField source="src" title="title" />
           </FileInput>
         </SimpleFormIterator>
+      </ArrayInput> */}
+     
+      <ArrayInput source="Cooks">
+        <SimpleFormIterator>
+          <ReferenceInput
+            label="Cooks Id"
+            // source="Cooks"
+            reference="Cooks"
+            // filter={{ isAdmin: true }}
+          >
+            <SelectInput optionText="Name" />
+          </ReferenceInput>
+          {/* <FileInput source="file" label="Array Form Files">
+            <FileField source="src" title="title" />
+          </FileInput> */}
+        </SimpleFormIterator>
       </ArrayInput>
-      <ArrayInput source="sections.mySection.items" label="Section items">
+
+      {/* <ArrayInput source="sections.mySection.items" label="Section items">
         <SimpleFormIterator>
           <TextInput source="name" label="Name" />
           <ImageInput source="image" label="Image" accept="image/*">
             <ImageField source="src" title="title" />
           </ImageInput>
         </SimpleFormIterator>
-      </ArrayInput>
+      </ArrayInput> */}
     </SimpleForm>
   </Create>
 );

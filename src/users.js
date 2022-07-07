@@ -99,7 +99,7 @@ export const UserEdit = (props) => (
       <TextInput source="email" />
       <BooleanInput disabled source="isAdmin" />
       <BooleanInput disabled source="isManager.isManager" />
-      <BooleanInput disabled source="isContent" />
+      <BooleanInput  source="isContent" />
     </SimpleForm>
   </Edit>
 );
