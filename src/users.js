@@ -138,9 +138,10 @@ export const BlogEdit = (props) => (
     <SimpleForm>
       <TextInput disabled source="id" />
       <TextInput source="Author" />
-      <ImageInput source="Image" />
+      {/* <ImageInput source="Image" /> */}
       <TextInput source="Heading" />
       <RichTextInput source="Content" />
+      <DateInput source="Timestamp" />
     </SimpleForm>
   </Edit>
 );
@@ -149,9 +150,9 @@ export const BlogCreate = (props) => (
     <SimpleForm>
       <TextInput disabled source="id" />
       <TextInput source="Author" />
-      <ImageInput source="Image" />
       <TextInput source="Heading" />
       <RichTextInput source="Content" />
+      <DateInput source="Timestamp" />
     </SimpleForm>
   </Create>
 );
@@ -164,7 +165,6 @@ export const MenuList = (props) => (
   <List {...props} filters={<UserFilter />}>
     <Datagrid>
       <TextField source="id" />
-
       <TextField source="Dal" />
       <TextField source="Non-Veg-Curry" />
       <TextField source="Rice" />
