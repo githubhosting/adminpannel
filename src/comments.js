@@ -47,8 +47,11 @@ export const CommentShow = (props) => (
       <TextField source="createdate" />
       <TextField source="lastupdate" />
       <RichTextField source="text" />
-      <ReferenceField label="Post" source="post_ref" reference="posts">
-        <TextField source="title" />
+      <ReferenceField label="Post" source="post_ref" reference="Cooks">
+        <TextField source="Name" />
+      </ReferenceField>
+      <ReferenceField label="Comment" source="Name" reference="Cooks">
+        <TextField source="Name" />
       </ReferenceField>
     </SimpleShowLayout>
   </Show>
@@ -62,10 +65,10 @@ export const CommentCreate = (props) => (
       <ReferenceInput
         label="Post"
         source="_DOCREF_post_ref"
-        reference="posts"
+        reference="Cooks"
         // filter={{ isAdmin: true }}
       >
-        <SelectInput label="User" optionText="title" />
+        <SelectInput label="User" optionText="Name" />
       </ReferenceInput>
     </SimpleForm>
   </Create>

@@ -1,6 +1,7 @@
 // in src/User.js
 import * as React from 'react';
 import styles from './styles.css';
+import useMediaQuery from '@mui/material/useMediaQuery';
 // tslint:disable-next-line:no-var-requires
 import {
   Datagrid,
@@ -16,6 +17,10 @@ import {
   ShowButton,
   EditButton,
   DeleteButton,
+  DeleteWithConfirmButton,
+  Toolbar,
+  SaveButton,
+  useRecordContext,
   ImageField,
   ReferenceField,
   ReferenceInput,
@@ -28,6 +33,7 @@ import {
   NumberInput,
   BooleanField,
   BooleanInput,
+  SimpleList,
   ReferenceArrayInput,
   ArrayField,
   ImageInput,
@@ -45,7 +51,6 @@ const UserFilter = (props) => (
     <TextInput label="Search" source="name" alwaysOn />
   </Filter>
 );
-
 // ......
 // Users Section
 // ......
@@ -59,7 +64,12 @@ export const UserList = (props) => (
       <TextField source="lastupdate" />
       <ShowButton label="" />
       <EditButton label="" />
-      <DeleteButton label="" redirect={false} />
+      <DeleteButton
+        confirmContent="You will not be able to recover this record. Are you sure?"
+        // translateOptions={{ name: record.name }}
+        label=""
+        redirect={false}
+      />
     </Datagrid>
   </List>
 );
@@ -97,9 +107,9 @@ export const UserEdit = (props) => (
       <TextInput source="name" />
       <TextInput source="phone" />
       <TextInput source="email" />
-      <BooleanInput disabled source="isAdmin" />
-      <BooleanInput disabled source="isManager.isManager" />
-      <BooleanInput  source="isContent" />
+      <BooleanInput source="isAdmin" />
+      <BooleanInput source="isManager.isManager" />
+      <BooleanInput source="isContent" />
     </SimpleForm>
   </Edit>
 );
@@ -116,7 +126,7 @@ export const BlogList = (props) => (
       {/* <TextField source="createdate" /> */}
       <ShowButton label="" />
       <EditButton label="" />
-      <DeleteButton label="" redirect={false} />
+      <DeleteWithConfirmButton label="" redirect={false} />
     </Datagrid>
   </List>
 );
@@ -173,7 +183,7 @@ export const MenuList = (props) => (
       <TextField source="lastupdate" />
       <ShowButton label="" />
       <EditButton label="" />
-      <DeleteButton label="" redirect={false} />
+      <DeleteWithConfirmButton label="" redirect={false} />
     </Datagrid>
   </List>
 );
@@ -187,19 +197,36 @@ export const MenuShow = (props) => (
   </Show>
 );
 
-export const UserList1 = (props) => (
-  <List {...props} filters={<UserFilter />}>
-    <Datagrid>
-      <TextField source="name" />
-      <TextField source="email" />
-      <TextField source="phone" />
-      {/* <TextField source="lastupdate" /> */}
-      <ShowButton label="" />
-      <EditButton label="" />
-      <DeleteButton label="" redirect={false} />
-    </Datagrid>
-  </List>
-);
+export const UserList1 = (props) => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+  const record = useRecordContext();
+  return (
+    <List {...props} filters={<UserFilter />}>
+      {isSmall ? (
+        <SimpleList
+          primaryText={(record) => record.name}
+          secondaryText={(record) => `Email: ${record.email}`}
+          tertiaryText={(record) => `Phone: ${record.phone}`}
+        />
+      ) : (
+        <Datagrid>
+          <TextField source="name" />
+          <TextField source="email" />
+          <TextField source="phone" />
+          {/* <TextField source="lastupdate" /> */}
+          <ShowButton label="" />
+          <EditButton label="" />
+          <DeleteWithConfirmButton
+            confirmContent="You will not be able to recover this record. Are you sure?"
+            label=""
+            translateOptions={(record) => record.name}
+            redirect={false}
+          />
+        </Datagrid>
+      )}
+    </List>
+  );
+};
 
 // ...........
 // Cook Section
@@ -215,7 +242,7 @@ export const CookList = (props) => (
       {/* <TextField source="lastupdate" /> */}
       <ShowButton label="" />
       <EditButton label="" />
-      <DeleteButton label="" redirect={false} />
+      <DeleteWithConfirmButton label="" redirect={false} />
     </Datagrid>
   </List>
 );

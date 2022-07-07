@@ -4,3 +4,5 @@ yarn*
 package-*
 FIREBASE_CONFIG.json
 src/App_Test.js
+src/comments.js
+

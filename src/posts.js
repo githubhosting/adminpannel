@@ -15,6 +15,7 @@ import {
   ShowButton,
   EditButton,
   DeleteButton,
+  DeleteWithConfirmButton,
   RichTextField,
   ReferenceField,
   SelectInput,
@@ -61,23 +62,23 @@ export const PostList = (props) => (
     // filter={{ updatedby: "test@example.com" }}
   >
     <Datagrid>
-      <TextField source="id" />
+      {/* <TextField source="id" /> */}
       <TextField source="Name" />
-      <TextField source="publishing_state" />
-      <TextField source="updatedby" />
-      <TextField source="createdby" />
-      <RichTextField source="body" />
-      <ReferenceField
+      {/* <TextField source="publishing_state" /> */}
+      {/* <TextField source="updatedby" /> */}
+      {/* <TextField source="createdby" /> */}
+      {/* <RichTextField source="body" /> */}
+      {/* <ReferenceField
         label="User Ref"
         source="user_ref.___refid"
         reference="Cooks"
       >
-        <TextField source="name" />
-      </ReferenceField>
+        <TextField source="Name" />
+      </ReferenceField> */}
 
       <ShowButton label="" />
       <EditButton label="" />
-      <DeleteButton label="" redirect={false} />
+      <DeleteWithConfirmButton label="" redirect={false} />
     </Datagrid>
   </List>
 );

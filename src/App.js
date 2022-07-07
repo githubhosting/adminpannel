@@ -20,6 +20,13 @@ import {
   BlogCreate,
   BlogEdit,
 } from './users';
+import {
+  CommentsList,
+  CommentShow,
+  CommentCreate,
+  CommentEdit,
+} from './comments';
+import MyLayout from './MyLayout';
 import { Admin, Resource } from 'react-admin';
 import {
   FirebaseDataProvider,
@@ -35,9 +42,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import UserIcon from '@material-ui/icons/Person';
 import ManagerIcon from '@material-ui/icons/SupervisorAccount';
 import CookIcon from '@material-ui/icons/Restaurant';
-import SoupKitchenIcon from '@material-ui/icons/Kitchen'; 
-// import SoupKitchenIcon from '@mui/icons-material/SoupKitchen';  
-
+import SoupKitchenIcon from '@material-ui/icons/Kitchen';
+// import SoupKitchenIcon from '@mui/icons-material/SoupKitchen';
 
 import CommentIcon from '@material-ui/icons/Comment';
 
@@ -47,6 +53,7 @@ import * as Comments from './comments';
 
 import CustomLoginPage from './CustomLoginPage';
 import EventMonitor from './EventMonitor';
+import Dashboard from './Dashboard';
 
 // let firebaseConfig;
 // try {
@@ -55,12 +62,14 @@ import EventMonitor from './EventMonitor';
 //   console.error('Error parsing (maybe quotes aren\'t escaped?): ', {REACT_APP_FIREBASE_CONFIG: process.env.REACT_APP_FIREBASE_CONFIG}, error);
 // }
 import { firebaseConfig } from './FIREBASE_CONFIG';
-import { defaultTheme } from 'react-admin';
+// import { defaultTheme } from 'react-admin';
+import { defaultTheme, Layout, AppBar, ToggleThemeButton } from 'react-admin';
+import { createTheme, Box, Typography } from '@mui/material';
 const theme = {
-    ...defaultTheme,
-    palette: {
-        mode: 'dark', // Switching the dark mode on is a single property value change.
-    },
+  ...defaultTheme,
+  palette: {
+    mode: 'dark', // Switching the dark mode on is a single property value change.
+  },
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
@@ -90,10 +99,13 @@ class App extends React.Component {
     return (
       <>
         <Admin
+          title="Foodey Admin"
+          dashboard={Dashboard}
           loginPage={CustomLoginPage}
           theme={theme}
           dataProvider={dataProvider}
           authProvider={authProvider}
+          layout={MyLayout}
         >
           {/* <Resource
             name="Users"
@@ -103,6 +115,7 @@ class App extends React.Component {
             create={UserCreate}
             edit={UserEdit}
           /> */}
+
           <Resource
             name="Users"
             icon={UserIcon}
@@ -160,6 +173,14 @@ class App extends React.Component {
             create={PostCreate}
             edit={PostEdit}
           />
+          {/* <Resource
+            name="Comments"
+            icon={ManagerIcon}
+            list={CommentsList}
+            show={CommentShow}
+            create={CommentCreate}
+            edit={CommentEdit}
+          /> */}
         </Admin>
         <EventMonitor />
       </>
