@@ -26,7 +26,7 @@ const bull = (
 export default () => (
   <Card sx={{ minWidth: 275 }}>
     <CardContent>
-      <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
+      <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
         Hello, Welcome to Admin Webpage
       </Typography>
       <br />

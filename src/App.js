@@ -45,8 +45,6 @@ import CookIcon from '@material-ui/icons/Restaurant';
 import SoupKitchenIcon from '@material-ui/icons/Kitchen';
 // import SoupKitchenIcon from '@mui/icons-material/SoupKitchen';
 
-import CommentIcon from '@material-ui/icons/Comment';
-
 import * as Posts from './posts';
 import * as Users from './users';
 import * as Comments from './comments';
