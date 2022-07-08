@@ -20,6 +20,23 @@ const MyAppBar = (props) => (
     }}
     {...props}
   >
+    <Typography
+      variant="h6"
+      noWrap
+      component="a"
+      href=""
+      sx={{
+        mr: 2,
+        display: { xs: 'flex', md: 'none' },
+        flexGrow: 1,
+        fontFamily: 'monospace',
+        fontWeight: 700,
+        color: 'inherit',
+        textDecoration: 'none',
+      }}
+    >
+      Foodey
+    </Typography>
     <Box flex="1">
       <Typography variant="h6" id="react-admin-title"></Typography>
     </Box>

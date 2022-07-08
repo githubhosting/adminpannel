@@ -102,7 +102,7 @@ class App extends React.Component {
           title="Foodey Admin"
           dashboard={Dashboard}
           loginPage={CustomLoginPage}
-          theme={theme}
+          // theme={theme}
           dataProvider={dataProvider}
           authProvider={authProvider}
           layout={MyLayout}

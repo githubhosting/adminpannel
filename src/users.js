@@ -132,7 +132,7 @@ export const BlogList = (props) => (
 );
 export const BlogShow = (props) => (
   <Show {...props}>
-    <SimpleShowLayout>
+    <SimpleShowLayout >
       <TextField source="id" />
       <TextField source="Author" />
       <ImageField source="Image" />
@@ -207,6 +207,7 @@ export const UserList1 = (props) => {
           primaryText={(record) => record.name}
           secondaryText={(record) => `Email: ${record.email}`}
           tertiaryText={(record) => `Phone: ${record.phone}`}
+          linkType={(record) => (record.canEdit ? 'edit' : 'show')}
         />
       ) : (
         <Datagrid>
