@@ -214,11 +214,11 @@ export const UserList1 = (props) => {
           <TextField source="email" />
           <TextField source="phone" />
           {/* <TextField source="lastupdate" /> */}
-          <ShowButton label="" />
-          <EditButton label="" />
+          <ShowButton label="Show" />
+          <EditButton label="Edit" />
           <DeleteWithConfirmButton
             confirmContent="You will not be able to recover this record. Are you sure?"
-            label=""
+            label="Delete"
             translateOptions={(record) => record.name}
             redirect={false}
           />

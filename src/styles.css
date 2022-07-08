@@ -5,31 +5,23 @@
 
 } */
 
-
-
 body {
-    display: block;
-    margin: 0px;
+  display: block;
+  margin: 0px;
 }
-.css-3r7p7y-MuiPaper-root-MuiCard-root{
-   margin-top: 2rem;
-   margin-left: 10px;
-   margin-right: 10px;
-   border-radius: 10px !important;
-   box-shadow: rgba(250, 250, 250, 0.1) 0px 10px 50px !important;
-}
-.css-pwngrv-MuiPaper-root-MuiCard-root{
-    margin-top: 2rem;
-    margin-left: 10px;
-   margin-right: 10px;
-   border-radius: 10px !important;
-   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px !important;
- }
- .css-1t6e9jv-MuiCardActions-root{
-    padding: 10px !important;
-    margin-bottom: 15px;
- }
 
- .css-46bh2p-MuiCardContent-root{
-    padding: 13px !important;
- }
+/* .MuiCard-root {
+  margin-top: 2rem;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 10px !important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px !important;
+} */
+.MuiCardActions-root {
+  padding: 10px !important;
+  margin-bottom: 15px;
+}
+
+.MuiCardContent-root {
+  padding: 13px !important;
+}

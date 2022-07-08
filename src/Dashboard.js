@@ -15,14 +15,13 @@ import Typography from '@mui/material/Typography';
 // );
 
 export default () => (
-  <Card sx={{ minWidth: 275 }}>
+  <Card sx={{ mt: 3, ml: 1, mr: 1, boxShadow: 3, borderRadius: 2 }}>
     <CardContent>
       <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
-        Hello, Welcome to Admin Webpage
+        Welcome to Admin Webpage
       </Typography>
       <br />
       <Typography variant="h5" component="div">
-        FOODEY <br />
         Indigo Infrastructures Private Limited
       </Typography>
       <br />
