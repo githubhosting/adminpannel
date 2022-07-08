@@ -1,7 +1,9 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import { Title } from 'react-admin';
+import { Title } from 'react-admin'
+import styles from './styles.css';
+;
 // export default () => (
 //     <Card variant="outlined">
 //         <Title title="Welcome to the administration" />
