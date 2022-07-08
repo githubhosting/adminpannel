@@ -1,29 +1,18 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import { Title } from 'react-admin'
+import { Title } from 'react-admin';
 import styles from './styles.css';
-;
+import Box from '@mui/material/Box';
+import CardActions from '@mui/material/CardActions';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 // export default () => (
 //     <Card variant="outlined">
 //         <Title title="Welcome to the administration" />
 //         <CardContent>All Components Will be listed Here after CIE</CardContent>
 //     </Card>
 // );
-
-import Box from '@mui/material/Box';
-import CardActions from '@mui/material/CardActions';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-);
 
 export default () => (
   <Card sx={{ minWidth: 275 }}>
@@ -33,7 +22,8 @@ export default () => (
       </Typography>
       <br />
       <Typography variant="h5" component="div">
-      FOODEY <br />Indigo Infrastructures Private Limited 
+        FOODEY <br />
+        Indigo Infrastructures Private Limited
       </Typography>
       <br />
       <Typography sx={{ mb: 1.5 }} color="text.secondary">
@@ -46,7 +36,14 @@ export default () => (
       </Typography> */}
     </CardContent>
     <CardActions>
-      <Button href='https://myselfshravan.github.io/' target='_blank' size="medium" variant="contained">Dev Portfolio</Button>
+      <Button
+        href="https://myselfshravan.github.io/"
+        target="_blank"
+        size="medium"
+        variant="contained"
+      >
+        Dev Portfolio
+      </Button>
     </CardActions>
   </Card>
 );
