@@ -2,6 +2,8 @@
 import * as React from 'react';
 import styles from './styles.css';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { Box, Card, CardContent, CardHeader, Typography } from '@mui/material';
+
 // tslint:disable-next-line:no-var-requires
 import {
   Datagrid,
@@ -37,7 +39,13 @@ import {
   ReferenceArrayInput,
   ArrayField,
   ImageInput,
+  ListContextProvider,
+  useTranslate,
+  RecordContextProvider,
+  useListContext,
 } from 'react-admin';
+// import ColoredNumberField from "./ColoredNumberField";
+
 import {
   RichTextInput,
   ArrayInput,
@@ -51,6 +59,8 @@ const UserFilter = (props) => (
     <TextInput label="Search" source="name" alwaysOn />
   </Filter>
 );
+// const translate = useTranslate();
+
 // ......
 // Users Section
 // ......
@@ -132,7 +142,7 @@ export const BlogList = (props) => (
 );
 export const BlogShow = (props) => (
   <Show {...props}>
-    <SimpleShowLayout >
+    <SimpleShowLayout>
       <TextField source="id" />
       <TextField source="Author" />
       <ImageField source="Image" />
@@ -197,7 +207,7 @@ export const MenuShow = (props) => (
   </Show>
 );
 
-export const UserList1 = (props) => {
+export const UserLists = (props) => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
   const record = useRecordContext();
   return (
@@ -207,6 +217,204 @@ export const UserList1 = (props) => {
           primaryText={(record) => record.name}
           secondaryText={(record) => `Email: ${record.email}`}
           tertiaryText={(record) => `Phone: ${record.phone}`}
+        />
+      ) : (
+        // <ListContextProvider value={{ ...listContext, data: selectedData }}>
+        //   <MobileGrid data={selectedData} />
+        // </ListContextProvider>
+        // <SimpleList
+        //   primaryText={(record) => record.name}
+        //   secondaryText={(record) => `Email: ${record.email}`}
+        //   tertiaryText={(record) => `Phone: ${record.phone}`}
+        // />
+        <Datagrid>
+          <TextField source="name" />
+          <TextField source="email" />
+          <TextField source="phone" />
+          {/* <TextField source="lastupdate" /> */}
+          <ShowButton label="Show" />
+          <EditButton label="Edit" />
+          <DeleteWithConfirmButton
+            confirmContent="You will not be able to recover this record. Are you sure?"
+            label="Delete"
+            translateOptions={(record) => record.name}
+            redirect={false}
+          />
+        </Datagrid>
+      )}
+    </List>
+  );
+};
+
+export const UserList4 = (props) => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+  const record = useRecordContext();
+  return (
+    <List {...props} filters={<UserFilter />}>
+      {isSmall ? (
+        <RecordContextProvider key={record} value={record}>
+          <Card sx={{ margin: '0.5rem 0' }}>
+            <CardHeader
+              title={(record) => `${record.name} ${record.name}`}
+              //   subheader={
+              //     <>
+              //       {translate("resources.customers.fields.last_seen_gte")}
+              //       &nbsp;
+              //       <DateField source="last_seen" />
+              //     </>
+              //   }
+              // avatar={<AvatarField size="45" />}
+              action={<EditButton />}
+            />
+            {/* <SimpleList
+              primaryText={(record) => record.name}
+              secondaryText={(record) => `Email: ${record.email}`}
+              tertiaryText={(record) => `Phone: ${record.phone}`}
+            /> */}
+            <CardContent sx={{ pt: 0 }}>
+              <Typography variant="body2">
+                {'Email'}
+                :&nbsp;
+                <NumberField source="email" />
+              </Typography>
+              <Typography variant="body2">
+                {'Phone'}
+                :&nbsp;
+                <NumberField
+                  source="phone"
+                  //   options={{
+                  //     style: "currency",
+                  //     currency: "USD",
+                  //   }}
+                />
+              </Typography>
+            </CardContent>
+            {/* {record.groups && record.groups.length > 0 && (
+            <CardContent sx={{ pt: 0 }}>
+              <SegmentsField />
+            </CardContent>
+          )} */}
+          </Card>
+        </RecordContextProvider>
+      ) : (
+        // <SimpleList
+        //   primaryText={(record) => record.name}
+        //   secondaryText={(record) => `Email: ${record.email}`}
+        //   tertiaryText={(record) => `Phone: ${record.phone}`}
+        // />
+        <Datagrid>
+          <TextField source="name" />
+          <TextField source="email" />
+          <TextField source="phone" />
+          {/* <TextField source="lastupdate" /> */}
+          <ShowButton label="Show" />
+          <EditButton label="Edit" />
+          <DeleteWithConfirmButton
+            confirmContent="You will not be able to recover this record. Are you sure?"
+            label="Delete"
+            translateOptions={(record) => record.name}
+            redirect={false}
+          />
+        </Datagrid>
+      )}
+    </List>
+  );
+};
+export const UserList1 = (props) => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+  const record = useRecordContext();
+  const { data, isLoading } = useListContext();
+
+  return (
+    <List {...props} filters={<UserFilter />}>
+      {isSmall ? (
+        <Box margin="0.5em">
+          {data.map((record) => (
+            <RecordContextProvider key={record.id} value={record}>
+              <Card sx={{ margin: '0.5rem 0' }}>
+                <CardHeader
+                  title={`${record.first_name} ${record.last_name}`}
+                  //   subheader={
+                  //     <>
+                  //       {translate("resources.customers.fields.last_seen_gte")}
+                  //       &nbsp;
+                  //       <DateField source="last_seen" />
+                  //     </>
+                  //   }
+                  // avatar={<AvatarField size="45" />}
+                  action={<EditButton />}
+                />
+                {/* <SimpleList
+                 primaryText={(record) => record.name}
+                 secondaryText={(record) => `Email: ${record.email}`}
+                 tertiaryText={(record) => `Phone: ${record.phone}`}
+               /> */}
+                <CardContent sx={{ pt: 0 }}>
+                  <Typography variant="body2">
+                    {'Email'}
+                    :&nbsp;
+                    <NumberField source="email" />
+                  </Typography>
+                  <Typography variant="body2">
+                    {'Phone'}
+                    :&nbsp;
+                    <NumberField
+                      source="zipcode"
+                      //   options={{
+                      //     style: "currency",
+                      //     currency: "USD",
+                      //   }}
+                    />
+                  </Typography>
+                </CardContent>
+                {/* {record.groups && record.groups.length > 0 && (
+                 <CardContent sx={{ pt: 0 }}>
+                   <SegmentsField />
+                 </CardContent>
+               )} */}
+              </Card>
+            </RecordContextProvider>
+          ))}
+        </Box>
+      ) : (
+        // <SimpleList
+        //   primaryText={(record) => record.name}
+        //   secondaryText={(record) => `Email: ${record.email}`}
+        //   tertiaryText={(record) => `Phone: ${record.phone}`}
+        // />
+        <Datagrid>
+          <TextField source="name" />
+          <TextField source="email" />
+          <TextField source="phone" />
+          {/* <TextField source="lastupdate" /> */}
+          <ShowButton label="Show" />
+          <EditButton label="Edit" />
+          <DeleteWithConfirmButton
+            confirmContent="You will not be able to recover this record. Are you sure?"
+            label="Delete"
+            translateOptions={(record) => record.name}
+            redirect={false}
+          />
+        </Datagrid>
+      )}
+    </List>
+  );
+};
+
+export const UserList7 = (props) => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+  const record = useRecordContext();
+  return (
+    <List {...props} filters={<UserFilter />}>
+      {isSmall ? (
+        <SimpleList
+          primaryText={(record) => record.name}
+          secondaryText={(record) =>
+            `Email: ${record.email} \n || Phone: ${record.phone}`
+          }
+          leftAvatar={(record) => null}
+          // tertiaryText={(record) => `Phone: ${record.phone}`}
+          // primaryText={(record) => record.phone}
         />
       ) : (
         <Datagrid>

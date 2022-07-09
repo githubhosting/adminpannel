@@ -7,6 +7,8 @@ import {
   UserCreate,
   UserEdit,
   UserList1,
+  UserList7,
+  UserLists,
   CookList,
   CookShow,
   MenuList,
@@ -117,7 +119,7 @@ class App extends React.Component {
           <Resource
             name="Users"
             icon={UserIcon}
-            list={UserList1}
+            list={UserList7}
             show={UserShow}
             create={UserCreate}
             edit={UserEdit}
