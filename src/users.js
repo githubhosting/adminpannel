@@ -53,6 +53,7 @@ import {
   FileInput,
   FileField,
 } from 'ra-input-rich-text';
+import { Avatar } from '@material-ui/core';
 
 const UserFilter = (props) => (
   <Filter {...props}>
@@ -95,6 +96,19 @@ export const UserShow = (props) => (
     </SimpleShowLayout>
   </Show>
 );
+export const UserDrop = (props) => (
+  <Show {...props}>
+    <SimpleShowLayout>
+      <TextField source="id" />
+      {/* <ImageField source="avatar" /> */}
+      <BooleanField source="isAdmin" />
+      <BooleanField source="isManager.isManager" />
+      <BooleanField source="isContent" />
+
+    </SimpleShowLayout>
+  </Show>
+);
+
 export const UserCreate = (props) => (
   <Create {...props}>
     <SimpleForm>
@@ -117,6 +131,7 @@ export const UserEdit = (props) => (
       <TextInput source="name" />
       <TextInput source="phone" />
       <TextInput source="email" />
+      <TextInput source="avatar" />
       <BooleanInput source="isAdmin" />
       <BooleanInput source="isManager.isManager" />
       <BooleanInput source="isContent" />
@@ -412,12 +427,16 @@ export const UserList7 = (props) => {
           secondaryText={(record) =>
             `Email: ${record.email} \n || Phone: ${record.phone}`
           }
-          leftAvatar={(record) => null}
+          // leftAvatar={(record) => null}
+          leftAvatar={(record) => (record.avatar ? record.avatar : null)}
+          // rightAvatar={(record) => null}
+
           // tertiaryText={(record) => `Phone: ${record.phone}`}
           // primaryText={(record) => record.phone}
         />
       ) : (
-        <Datagrid>
+        <Datagrid expand={<UserDrop/>}>
+          <Avatar source="avatar" />
           <TextField source="name" />
           <TextField source="email" />
           <TextField source="phone" />
