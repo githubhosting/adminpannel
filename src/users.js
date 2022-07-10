@@ -426,7 +426,6 @@ export const UserList7 = (props) => {
           sx={{
             paddingRight: '2rem',
             borderRadius: '0.5rem',
-            backgroundColor: '#fff',
             boxShadow: '0 0 0.6rem rgba(0,0,0,0.1)',
           }}
           primaryText={(record) => <b>{record.name}</b>}
