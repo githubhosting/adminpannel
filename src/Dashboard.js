@@ -15,34 +15,73 @@ import Typography from '@mui/material/Typography';
 // );
 
 export default () => (
-  <Card sx={{ mt: 3, ml: 1, mr: 1, boxShadow: 3, borderRadius: 2 }}>
-    <CardContent>
-      <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
-        Welcome to Admin Webpage
-      </Typography>
-      <br />
-      <Typography variant="h5" component="div">
-        Indigo Infrastructures Private Limited
-      </Typography>
-      <br />
-      <Typography sx={{ mb: 1.5 }} color="text.secondary">
-        Website made by Shravan
-      </Typography>
-      {/* <Typography variant="body2">
-        well meaning and kindly.
+  <>
+    <Card sx={{ mt: 3, ml: 1, mr: 1, boxShadow: 3, borderRadius: 2 }}>
+      <CardContent>
+        <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
+          Welcome to Admin Webpage
+        </Typography>
         <br />
-        {'"a benevolent smile"'}
-      </Typography> */}
-    </CardContent>
-    <CardActions>
-      <Button
-        href="https://myselfshravan.github.io/"
-        target="_blank"
-        size="medium"
-        variant="contained"
-      >
-        Dev Portfolio
-      </Button>
-    </CardActions>
-  </Card>
+        <Typography variant="h5" component="div">
+          Indigo Infrastructures Private Limited
+        </Typography>
+        <br />
+        <Typography sx={{ mb: 1 }} color="text.secondary">
+          Website made by <i>Shravan</i>
+        </Typography>
+        {/* <Typography variant="body2">
+      well meaning and kindly.
+      <br />
+      {'"a benevolent smile"'}
+    </Typography> */}
+      </CardContent>
+      <CardActions>
+        <Button
+          href="https://myselfshravan.github.io/"
+          target="_blank"
+          size="medium"
+          variant="contained"
+          boxShadow="1"
+          color="primary"
+          sx={{ ml: 1, mr: 1 }}
+        >
+          Portfolio
+        </Button>
+      </CardActions>
+    </Card>
+    <Card sx={{ mt: 3, ml: 1, mr: 1, boxShadow: 2, borderRadius: 1 }}>
+      <CardActions>
+        <Button
+          href="https://adminpannel.vercel.app/#/Users"
+          size="medium"
+          variant="contained"
+          boxShadow="2"
+          color="secondary"
+          sx={{ mt: 1, ml: 1, mr: 1 }}
+        >
+          Users
+        </Button>
+        <Button
+          href="https://adminpannel.vercel.app/#/Cooks"
+          size="medium"
+          variant="contained"
+          boxShadow="2"
+          color="secondary"
+          sx={{ mt: 1, ml: 1, mr: 1 }}
+        >
+          Cooks
+        </Button>
+        <Button
+          href="https://adminpannel.vercel.app/#/Blogs"
+          size="medium"
+          variant="contained"
+          boxShadow="2"
+          color="secondary"
+          sx={{ mt: 1, ml: 1, mr: 1 }}
+        >
+          Blogs
+        </Button>
+      </CardActions>
+    </Card>
+  </>
 );

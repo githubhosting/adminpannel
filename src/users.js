@@ -54,6 +54,7 @@ import {
   FileField,
 } from 'ra-input-rich-text';
 import { Avatar } from '@material-ui/core';
+import { ImageAspectRatioRounded } from '@material-ui/icons';
 
 const UserFilter = (props) => (
   <Filter {...props}>
@@ -104,7 +105,6 @@ export const UserDrop = (props) => (
       <BooleanField source="isAdmin" />
       <BooleanField source="isManager.isManager" />
       <BooleanField source="isContent" />
-
     </SimpleShowLayout>
   </Show>
 );
@@ -423,19 +423,24 @@ export const UserList7 = (props) => {
     <List {...props} filters={<UserFilter />}>
       {isSmall ? (
         <SimpleList
-          primaryText={(record) => record.name}
+          sx={{
+            paddingRight: '2rem',
+            borderRadius: '0.5rem',
+            backgroundColor: '#fff',
+            boxShadow: '0 0 0.6rem rgba(0,0,0,0.1)',
+          }}
+          primaryText={(record) => <b>{record.name}</b>}
           secondaryText={(record) =>
             `Email: ${record.email} \n || Phone: ${record.phone}`
           }
-          // leftAvatar={(record) => null}
           leftAvatar={(record) => (record.avatar ? record.avatar : null)}
-          // rightAvatar={(record) => null}
-
-          // tertiaryText={(record) => `Phone: ${record.phone}`}
-          // primaryText={(record) => record.phone}
         />
       ) : (
-        <Datagrid expand={<UserDrop/>}>
+        // rightAvatar={(record) => null}
+        // tertiaryText={(record) => `Phone: ${record.phone}`}
+        // primaryText={(record) => record.phone}
+
+        <Datagrid expand={<UserDrop />}>
           <Avatar source="avatar" />
           <TextField source="name" />
           <TextField source="email" />
