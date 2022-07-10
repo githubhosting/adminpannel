@@ -439,7 +439,13 @@ export const UserList7 = (props) => {
         // tertiaryText={(record) => `Phone: ${record.phone}`}
         // primaryText={(record) => record.phone}
 
-        <Datagrid expand={<UserDrop />}>
+        <Datagrid
+          sx={{
+            borderRadius: '0.5rem',
+            boxShadow: '0 0 0.6rem rgba(0,0,0,0.1)',
+          }}
+          expand={<UserDrop />}
+        >
           <Avatar source="avatar" />
           <TextField source="name" />
           <TextField source="email" />

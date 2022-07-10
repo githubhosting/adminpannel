@@ -19,7 +19,7 @@ body {
 } */
 .MuiCardActions-root {
   padding: 10px !important;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 }
 
 .MuiCardContent-root {

@@ -43,21 +43,20 @@ export default () => (
           variant="contained"
           boxShadow="1"
           color="primary"
-          sx={{ ml: 1, mr: 1 }}
+          sx={{ ml: 1, mr: 1, mb: 2 }}
         >
           Portfolio
         </Button>
       </CardActions>
     </Card>
-    <Card sx={{ mt: 3, ml: 1, mr: 1, boxShadow: 2, borderRadius: 1 }}>
+    <Card sx={{ mt: 3, ml: 1, mr: 1, mb: 0, boxShadow: 2, borderRadius: 1 }}>
       <CardActions>
         <Button
           href="https://adminpannel.vercel.app/#/Users"
           size="medium"
           variant="contained"
           boxShadow="2"
-          color="secondary"
-          sx={{ mt: 1, ml: 1, mr: 1 }}
+          sx={{ mt: 1, ml: 1, mr: 1, mb: 1 }}
         >
           Users
         </Button>
@@ -66,8 +65,7 @@ export default () => (
           size="medium"
           variant="contained"
           boxShadow="2"
-          color="secondary"
-          sx={{ mt: 1, ml: 1, mr: 1 }}
+          sx={{ mt: 1, ml: 1, mr: 1, mb: 1 }}
         >
           Cooks
         </Button>
@@ -76,8 +74,7 @@ export default () => (
           size="medium"
           variant="contained"
           boxShadow="2"
-          color="secondary"
-          sx={{ mt: 1, ml: 1, mr: 1 }}
+          sx={{ mt: 1, ml: 1, mr: 1, mb: 1 }}
         >
           Blogs
         </Button>
