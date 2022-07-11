@@ -29,7 +29,7 @@ import {
   CommentEdit,
 } from './comments';
 import MyLayout from './MyLayout';
-import { Admin, Resource } from 'react-admin';
+import { Admin, Resource, ShowGuesser } from 'react-admin';
 import {
   FirebaseDataProvider,
   FirebaseAuthProvider,
@@ -121,6 +121,8 @@ class App extends React.Component {
             icon={UserIcon}
             list={UserList7}
             show={UserShow}
+            // show={ShowGuesser}
+
             create={UserCreate}
             edit={UserEdit}
           />

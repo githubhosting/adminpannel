@@ -89,7 +89,8 @@ export const UserShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
       <TextField source="id" />
-      <TextField source="name" />
+      <ImageField source="avatar" title="Profile" />
+      <TextField sx={{ fontWeight: 'bold' }} source="name" />
       <BooleanField source="isAdmin" />
       <BooleanField source="isManager.isManager" />
       <BooleanField source="isManager.Manager" />
@@ -101,7 +102,6 @@ export const UserDrop = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
       <TextField source="id" />
-      {/* <ImageField source="avatar" /> */}
       <BooleanField source="isAdmin" />
       <BooleanField source="isManager.isManager" />
       <BooleanField source="isContent" />
@@ -149,8 +149,8 @@ export const BlogList = (props) => (
       <TextField source="Author" />
       <TextField source="Timestamp" />
       {/* <TextField source="createdate" /> */}
-      <ShowButton label="" />
-      <EditButton label="" />
+      <ShowButton sx={{ fontWeight: 'bold' }} label="" />
+      <EditButton sx={{ fontWeight: 'bold' }} label="" />
       <DeleteWithConfirmButton label="" redirect={false} />
     </Datagrid>
   </List>
@@ -206,8 +206,8 @@ export const MenuList = (props) => (
       <TextField source="Roti" />
       <TextField source="createdate" />
       <TextField source="lastupdate" />
-      <ShowButton label="" />
-      <EditButton label="" />
+      <ShowButton sx={{ fontWeight: 'bold' }} label="" />
+      <EditButton sx={{ fontWeight: 'bold' }} label="" />
       <DeleteWithConfirmButton label="" redirect={false} />
     </Datagrid>
   </List>
@@ -428,11 +428,17 @@ export const UserList7 = (props) => {
             borderRadius: '0.5rem',
             boxShadow: '0 0 0.6rem rgba(0,0,0,0.1)',
           }}
+          linkType="show"
           primaryText={(record) => <b>{record.name}</b>}
           secondaryText={(record) =>
             `Email: ${record.email} \n || Phone: ${record.phone}`
           }
           leftAvatar={(record) => (record.avatar ? record.avatar : null)}
+          tertiaryText={
+            <ReferenceField reference="categories" source="category_id">
+              <TextField source="name" />
+            </ReferenceField>
+          }
         />
       ) : (
         // rightAvatar={(record) => null}
@@ -445,6 +451,7 @@ export const UserList7 = (props) => {
             boxShadow: '0 0 0.6rem rgba(0,0,0,0.1)',
           }}
           expand={<UserDrop />}
+          rowClick="show"
         >
           <Avatar source="avatar" />
           <TextField source="name" />
@@ -452,7 +459,7 @@ export const UserList7 = (props) => {
           <TextField source="phone" />
           {/* <TextField source="lastupdate" /> */}
           <ShowButton label="Show" />
-          <EditButton label="Edit" />
+          <EditButton sx={{ fontWeight: 'bold' }} label="Edit" />
           <DeleteWithConfirmButton
             confirmContent="You will not be able to recover this record. Are you sure?"
             label="Delete"

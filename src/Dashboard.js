@@ -16,7 +16,22 @@ import Typography from '@mui/material/Typography';
 
 export default () => (
   <>
-    <Card sx={{ mt: 3, ml: 1, mr: 1, boxShadow: 3, borderRadius: 2 }}>
+    <Card
+      sx={{
+        mt: 3,
+        ml: 1,
+        mr: 1,
+        boxShadow: 3,
+        borderRadius: 2,
+        // width: {
+        //   xs: 300, // theme.breakpoints.up('xs')
+        //   sm: 400, // theme.breakpoints.up('sm')
+        //   md: 500, // theme.breakpoints.up('md')
+        //   lg: 600, // theme.breakpoints.up('lg')
+        //   xl: 700, // theme.breakpoints.up('xl')
+        // },
+      }}
+    >
       <CardContent>
         <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
           Welcome to Admin Webpage
