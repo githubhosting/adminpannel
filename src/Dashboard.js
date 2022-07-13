@@ -67,7 +67,7 @@ export default () => (
     <Card sx={{ mt: 3, ml: 1, mr: 1, mb: 0, boxShadow: 2, borderRadius: 1 }}>
       <CardActions>
         <Button
-          href="https://adminpannel.vercel.app/#/Users"
+          href="/#/Users"
           size="medium"
           variant="contained"
           boxShadow="2"
@@ -76,7 +76,7 @@ export default () => (
           Users
         </Button>
         <Button
-          href="https://adminpannel.vercel.app/#/Cooks"
+          href="/#/Cooks"
           size="medium"
           variant="contained"
           boxShadow="2"
@@ -85,7 +85,7 @@ export default () => (
           Cooks
         </Button>
         <Button
-          href="https://adminpannel.vercel.app/#/Blogs"
+          href="/#/Blogs"
           size="medium"
           variant="contained"
           boxShadow="2"

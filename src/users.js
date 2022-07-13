@@ -3,7 +3,12 @@ import * as React from 'react';
 import styles from './styles.css';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Box, Card, CardContent, CardHeader, Typography } from '@mui/material';
-
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ImageIcon from '@material-ui/icons/Image';
+import WorkIcon from '@material-ui/icons/Work';
+import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 // tslint:disable-next-line:no-var-requires
 import {
   Datagrid,
@@ -69,7 +74,7 @@ const UserFilter = (props) => (
 
 export const UserList = (props) => (
   <List {...props} filters={<UserFilter />}>
-    <Datagrid>
+    <Datagrid rowClick="show">
       <TextField source="name" />
       <TextField source="age" />
       <TextField source="createdate" />
@@ -92,8 +97,8 @@ export const UserShow = (props) => (
       <ImageField source="avatar" title="Profile" />
       <TextField sx={{ fontWeight: 'bold' }} source="name" />
       <BooleanField source="isAdmin" />
-      <BooleanField source="isManager.isManager" />
-      <BooleanField source="isManager.Manager" />
+      <BooleanField label="Is manager" source="isManager.isManager" />
+      {/* <BooleanField source="isManager.Manager" />  */}
       <BooleanField source="isContent" />
     </SimpleShowLayout>
   </Show>
@@ -103,7 +108,7 @@ export const UserDrop = (props) => (
     <SimpleShowLayout>
       <TextField source="id" />
       <BooleanField source="isAdmin" />
-      <BooleanField source="isManager.isManager" />
+      <BooleanField label="Is manager" source="isManager.isManager" />
       <BooleanField source="isContent" />
     </SimpleShowLayout>
   </Show>
@@ -145,7 +150,7 @@ export const UserEdit = (props) => (
 
 export const BlogList = (props) => (
   <List {...props} filters={<UserFilter />}>
-    <Datagrid>
+    <Datagrid rowClick="show">
       <TextField source="Author" />
       <TextField source="Timestamp" />
       {/* <TextField source="createdate" /> */}
@@ -198,7 +203,7 @@ export const BlogCreate = (props) => (
 
 export const MenuList = (props) => (
   <List {...props} filters={<UserFilter />}>
-    <Datagrid>
+    <Datagrid rowClick="show">
       <TextField source="id" />
       <TextField source="Dal" />
       <TextField source="Non-Veg-Curry" />
@@ -424,7 +429,6 @@ export const UserList7 = (props) => {
       {isSmall ? (
         <SimpleList
           sx={{
-            paddingRight: '2rem',
             borderRadius: '0.5rem',
             boxShadow: '0 0 0.6rem rgba(0,0,0,0.1)',
           }}
@@ -434,11 +438,6 @@ export const UserList7 = (props) => {
             `Email: ${record.email} \n || Phone: ${record.phone}`
           }
           leftAvatar={(record) => (record.avatar ? record.avatar : null)}
-          tertiaryText={
-            <ReferenceField reference="categories" source="category_id">
-              <TextField source="name" />
-            </ReferenceField>
-          }
         />
       ) : (
         // rightAvatar={(record) => null}
@@ -453,6 +452,41 @@ export const UserList7 = (props) => {
           expand={<UserDrop />}
           rowClick="show"
         >
+          <Avatar source="avatar" />
+          <TextField source="name" />
+          <TextField source="email" />
+          <TextField source="phone" />
+          {/* <TextField source="lastupdate" /> */}
+          <ShowButton sx={{ fontWeight: 'bold' }} label="Show" />
+          <EditButton sx={{ fontWeight: 'bold' }} label="Edit" />
+          <DeleteWithConfirmButton
+            confirmContent="You will not be able to recover this record. Are you sure?"
+            label="Delete"
+            translateOptions={(record) => record.name}
+            redirect={false}
+          />
+        </Datagrid>
+      )}
+    </List>
+  );
+};
+
+export const UserList8 = (props) => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+  const record = useRecordContext();
+  return (
+    <List {...props} filters={<UserFilter />}>
+      {isSmall ? (
+        <>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar source="avatar"></Avatar>
+            </ListItemAvatar>
+            <ListItemText primary={(record) => <b>{record.name}</b>} />
+          </ListItem>
+        </>
+      ) : (
+        <Datagrid expand={<UserDrop />} rowClick="show">
           <Avatar source="avatar" />
           <TextField source="name" />
           <TextField source="email" />
@@ -475,21 +509,65 @@ export const UserList7 = (props) => {
 // ...........
 // Cook Section
 // ...........
-
-export const CookList = (props) => (
-  <List {...props} filters={<UserFilter />}>
-    <Datagrid>
-      <TextField source="Name" />
-      <TextField source="Region" />
-      <TextField source="State" />
-      <NumberField source="Ratings" />
-      {/* <TextField source="lastupdate" /> */}
-      <ShowButton label="" />
-      <EditButton label="" />
-      <DeleteWithConfirmButton label="" redirect={false} />
-    </Datagrid>
-  </List>
-);
+export const CookList = (props) => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+  const record = useRecordContext();
+  return (
+    <List {...props} filters={<UserFilter />}>
+      {isSmall ? (
+        <SimpleList
+          sx={{
+            paddingRight: '2rem',
+            borderRadius: '0.5rem',
+            boxShadow: '0 0 0.6rem rgba(0,0,0,0.1)',
+          }}
+          linkType="show"
+          primaryText={(record) => <b>{record.Name}</b>}
+          secondaryText={(record) =>
+            `Region: ${record.Region} \n || State: ${record.State}`
+          }
+        />
+      ) : (
+        <Datagrid
+          sx={{
+            borderRadius: '0.5rem',
+            boxShadow: '0 0 0.6rem rgba(0,0,0,0.1)',
+          }}
+          expand={<UserDrop />}
+          rowClick="show"
+        >
+          <TextField source="Name" />
+          <TextField source="Region" />
+          <TextField source="State" />
+          <NumberField source="Ratings" />
+          {/* <TextField source="lastupdate" /> */}
+          <ShowButton sx={{ fontWeight: 'bold' }} label="Show" />
+          <EditButton sx={{ fontWeight: 'bold' }} label="Edit" />
+          <DeleteWithConfirmButton
+            confirmContent="You will not be able to recover this record. Are you sure?"
+            label="Delete"
+            translateOptions={(record) => record.name}
+            redirect={false}
+          />
+        </Datagrid>
+      )}
+    </List>
+  );
+};
+// export const CookList = (props) => (
+//   <List {...props} filters={<UserFilter />}>
+//     <Datagrid rowClick="show">
+//       <TextField source="Name" />
+//       <TextField source="Region" />
+//       <TextField source="State" />
+//       <NumberField source="Ratings" />
+//       {/* <TextField source="lastupdate" /> */}
+//       <ShowButton label="" />
+//       <EditButton label="" />
+//       <DeleteWithConfirmButton label="" redirect={false} />
+//     </Datagrid>
+//   </List>
+// );
 
 export const CookShow = (props) => (
   <Show {...props}>

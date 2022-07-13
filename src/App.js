@@ -29,7 +29,8 @@ import {
   CommentEdit,
 } from './comments';
 import MyLayout from './MyLayout';
-import { Admin, Resource, ShowGuesser } from 'react-admin';
+import { Admin, Resource, ShowGuesser, CustomRoutes, ListGuesser, EditGuesser } from 'react-admin';
+import { Route } from 'react-router-dom';
 import {
   FirebaseDataProvider,
   FirebaseAuthProvider,
@@ -54,6 +55,9 @@ import * as Comments from './comments';
 import CustomLoginPage from './CustomLoginPage';
 import EventMonitor from './EventMonitor';
 import Dashboard from './Dashboard';
+import Settings from './Settings';
+import MyPage from './MyPage';
+// import Dashboard from './Dashboard_test';
 
 // let firebaseConfig;
 // try {
@@ -61,8 +65,8 @@ import Dashboard from './Dashboard';
 // } catch (error) {
 //   console.error('Error parsing (maybe quotes aren\'t escaped?): ', {REACT_APP_FIREBASE_CONFIG: process.env.REACT_APP_FIREBASE_CONFIG}, error);
 // }
+
 import { firebaseConfig } from './FIREBASE_CONFIG';
-// import { defaultTheme } from 'react-admin';
 import { defaultTheme, Layout, AppBar, ToggleThemeButton } from 'react-admin';
 import { createTheme, Box, Typography } from '@mui/material';
 const theme = {
@@ -71,12 +75,41 @@ const theme = {
     mode: 'dark', // Switching the dark mode on is a single property value change.
   },
 };
-
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 console.log({ firebaseConfig, firebaseApp });
 
-const authProvider = FirebaseAuthProvider(firebaseConfig);
+// const authProvider = FirebaseAuthProvider(firebaseConfig);
+const authProvider = {
+  login: ({ username, password }) => {
+    if (username !== 'admin@foodey.com' || password !== 'adminfoodey') {
+      return Promise.reject();
+    }
+    localStorage.setItem('username', username);
+    return Promise.resolve();
+  },
+  logout: () => {
+    localStorage.removeItem('username');
+    return Promise.resolve();
+  },
+  checkAuth: () =>
+    localStorage.getItem('username') ? Promise.resolve() : Promise.reject(),
+  checkError: (error) => {
+    const status = error.status;
+    if (status === 401 || status === 403) {
+      localStorage.removeItem('username');
+      return Promise.reject();
+    }
+    return Promise.resolve();
+  },
+  getIdentity: () =>
+    Promise.resolve({
+      id: 'user',
+      fullName: 'Foodey Admin',
+    }),
+  getPermissions: () => Promise.resolve(''),
+};
+
 const dataProvider = FirebaseDataProvider(firebaseConfig, {
   logging: true,
   // rootRef: 'rootrefcollection/QQG2McwjR2Bohi9OwQzP',
@@ -102,7 +135,6 @@ class App extends React.Component {
           title="Foodey Admin"
           dashboard={Dashboard}
           loginPage={CustomLoginPage}
-          // theme={theme}
           dataProvider={dataProvider}
           authProvider={authProvider}
           layout={MyLayout}
@@ -121,8 +153,6 @@ class App extends React.Component {
             icon={UserIcon}
             list={UserList7}
             show={UserShow}
-            // show={ShowGuesser}
-
             create={UserCreate}
             edit={UserEdit}
           />
@@ -131,6 +161,8 @@ class App extends React.Component {
             icon={CookIcon}
             list={CookList}
             show={CookShow}
+            // show={ShowGuesser}
+
             create={CookCreate}
             edit={CookEdit}
           />
@@ -139,7 +171,8 @@ class App extends React.Component {
             name="customers"
             icon={CustomerIcon}
             list={UserList}
-            show={UserShow}
+            show={ShowGuesser}
+            // show={UserShow}
             create={UserCreate}
             edit={UserEdit}
           />
@@ -183,7 +216,14 @@ class App extends React.Component {
             create={CommentCreate}
             edit={CommentEdit}
           /> */}
+          
+
+          <CustomRoutes>
+            <Route path="/mypage" element={<MyPage />} />
+            <Route path="/settings" element={<Settings />} />
+          </CustomRoutes>
         </Admin>
+
         <EventMonitor />
       </>
     );
