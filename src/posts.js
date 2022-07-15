@@ -152,10 +152,10 @@ export const ManagerShow = (props) => (
         reference="Cooks"
         source="Cooks"
       >
-        <Datagrid rowClick="show" isRowSelectable={ record => false }>
+        <Datagrid rowClick="show" isRowSelectable={(record) => false}>
           {/* <TextField source="id" /> */}
-          <TextField sx={{ fontWeight: 'bold' }} source="Name" />
-          <ShowButton />
+          <TextField source="Name" />
+          {/* <ShowButton label="Show" /> */}
         </Datagrid>
         {/* <SingleFieldList
           sx={{

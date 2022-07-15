@@ -425,7 +425,7 @@ export const UserList7 = (props) => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
   const record = useRecordContext();
   const postRowStyle = (record, index) => ({
-    backgroundColor: record.isAdmin == true ? '#90ee90' : 'default',
+    backgroundColor: record.isAdmin == true ? '#90caf9' : 'default',
   });
   return (
     <List {...props} filters={<UserFilter />}>
@@ -454,7 +454,7 @@ export const UserList7 = (props) => {
           }}
           expand={<UserDrop />}
           rowClick="expand"
-          rowStyle={postRowStyle}
+          // rowStyle={postRowStyle}
         >
           <Avatar source="avatar" />
           <TextField source="name" />
