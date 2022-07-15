@@ -29,7 +29,14 @@ import {
   CommentEdit,
 } from './comments';
 import MyLayout from './MyLayout';
-import { Admin, Resource, ShowGuesser, CustomRoutes, ListGuesser, EditGuesser } from 'react-admin';
+import {
+  Admin,
+  Resource,
+  ShowGuesser,
+  CustomRoutes,
+  ListGuesser,
+  EditGuesser,
+} from 'react-admin';
 import { Route } from 'react-router-dom';
 import {
   FirebaseDataProvider,
@@ -162,7 +169,6 @@ class App extends React.Component {
             list={CookList}
             show={CookShow}
             // show={ShowGuesser}
-
             create={CookCreate}
             edit={CookEdit}
           />
@@ -216,7 +222,6 @@ class App extends React.Component {
             create={CommentCreate}
             edit={CommentEdit}
           /> */}
-          
 
           <CustomRoutes>
             <Route path="/mypage" element={<MyPage />} />

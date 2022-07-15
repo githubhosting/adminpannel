@@ -104,7 +104,7 @@ export const UserShow = (props) => (
   </Show>
 );
 export const UserDrop = (props) => (
-  <Show {...props}>
+  <Show {...props} actions="">
     <SimpleShowLayout>
       <TextField source="id" />
       <BooleanField source="isAdmin" />
@@ -424,6 +424,9 @@ export const UserList1 = (props) => {
 export const UserList7 = (props) => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
   const record = useRecordContext();
+  const postRowStyle = (record, index) => ({
+    backgroundColor: record.isAdmin == true ? '#90ee90' : 'default',
+  });
   return (
     <List {...props} filters={<UserFilter />}>
       {isSmall ? (
@@ -450,7 +453,8 @@ export const UserList7 = (props) => {
             boxShadow: '0 0 0.6rem rgba(0,0,0,0.1)',
           }}
           expand={<UserDrop />}
-          rowClick="show"
+          rowClick="expand"
+          rowStyle={postRowStyle}
         >
           <Avatar source="avatar" />
           <TextField source="name" />
@@ -580,6 +584,8 @@ export const CookShow = (props) => (
       <TextField source="State" />
       <TextField source="Speciality" />
       <TextField source="Year_Of_Experience" />
+      <TextField source="Menu.Friday" />
+
       {/* <TextField source="isAdmin" /> */}
     </SimpleShowLayout>
   </Show>

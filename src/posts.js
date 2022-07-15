@@ -29,6 +29,8 @@ import {
   ArrayField,
   SimpleList,
   SelectField,
+  SingleFieldList,
+  ChipField,
 } from 'react-admin';
 import { RichTextInput } from 'ra-input-rich-text';
 import {
@@ -61,7 +63,7 @@ export const PostList = (props) => (
     // filters={<ReferenceFilter />}
     // filter={{ updatedby: "test@example.com" }}
   >
-    <Datagrid>
+    <Datagrid rowClick="show">
       {/* <TextField source="id" /> */}
       <TextField source="Name" />
       {/* <TextField source="publishing_state" /> */}
@@ -76,9 +78,13 @@ export const PostList = (props) => (
         <TextField source="Name" />
       </ReferenceField> */}
 
-      <ShowButton label="" />
-      <EditButton label="" />
-      <DeleteWithConfirmButton label="" redirect={false} />
+      {/* <ShowButton label="" /> */}
+      <EditButton sx={{ fontWeight: 'bold' }} label="Edit" />
+      <DeleteWithConfirmButton
+        sx={{ fontWeight: 'bold' }}
+        label="Delete"
+        redirect={false}
+      />
     </Datagrid>
   </List>
 );
@@ -132,27 +138,43 @@ export const ManagerShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
       <TextField source="id" />
-      <TextField source="Name" />
+      <TextField sx={{ fontWeight: 'bold' }} source="Name" />
       <TextField source="Cloud" />
-      <TextField source="Cooks" />
 
-      <ArrayField source="Cooks">
-        <ReferenceArrayField reference="Cooks" label="Cooks Id">
-          <SimpleList>
-            <TextField source="Name" />
-          </SimpleList>
-        </ReferenceArrayField>
-      </ArrayField>
+      {/* <TextField source="Cooks" /> */}
 
-      <ReferenceField
-        label="User Ref"
-        source="user_ref.___refid"
+      {/* <ReferenceArrayField label="Cooks Id" source="Cooks" reference="Cooks">
+        
+      </ReferenceArrayField> */}
+
+      <ReferenceArrayField
+        label="Cooks Assigned"
         reference="Cooks"
+        source="Cooks"
       >
-        <TextField source="Cooks" />
-      </ReferenceField>
+        <Datagrid rowClick="show" isRowSelectable={ record => false }>
+          {/* <TextField source="id" /> */}
+          <TextField sx={{ fontWeight: 'bold' }} source="Name" />
+          <ShowButton />
+        </Datagrid>
+        {/* <SingleFieldList
+          sx={{
+            mt: 2,
+            mb: 3,
+          }}
+        >
+          <ChipField
+            sx={{
+              borderRadius: '0.5rem',
+              boxShadow: '0 0 0.3rem rgba(0,0,0,0.1)',
+            }}
+            source="Name"
+          />
+        </SingleFieldList> */}
+      </ReferenceArrayField>
+
       {/* Or use the easier <FirebaseReferenceField> */}
-      <FirebaseReferenceField
+      {/* <FirebaseReferenceField
         label="User (Reference Doc)"
         source="user_ref"
         reference="Cooks"
@@ -164,7 +186,7 @@ export const ManagerShow = (props) => (
         source="files_multiple.src"
         title="files_multiple.title"
         multiple
-      />
+      /> */}
     </SimpleShowLayout>
   </Show>
 );
@@ -213,7 +235,7 @@ export const PostCreate = (props) => (
           </FileInput>
         </SimpleFormIterator>
       </ArrayInput> */}
-     
+
       <ArrayInput source="Cooks">
         <SimpleFormIterator>
           <ReferenceInput
