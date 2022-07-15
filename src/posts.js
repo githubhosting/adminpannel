@@ -194,18 +194,7 @@ export const ManagerShow = (props) => (
 export const PostCreate = (props) => (
   <Create {...props}>
     <SimpleForm>
-      {/* <TextInput source="id" /> */}
       <TextInput source="Name" />
-      {/* <RichTextInput source="body" /> */}
-      {/* <DateInput source="date" parse={(val) => new Date(val)} /> */}
-      {/* <ReferenceInput
-        label="Cooks   Id"
-        source="user_id"
-        reference="Cooks"
-        // filter={{ isAdmin: true }}
-      >
-        <SelectInput optionText="Name" />
-      </ReferenceInput> */}
 
       {/* <ReferenceInput
         label="User Ref"
@@ -225,52 +214,58 @@ export const PostCreate = (props) => (
         <SelectInput optionText="name" />
       </FirebaseReferenceInput> */}
 
-      {/* <FileInput source="files_multiple" multiple label="Files with (multiple)">
-        <FileField source="src" title="title" />
-      </FileInput>
-      <ArrayInput source="files">
+      <ArrayInput source="Cooks">
         <SimpleFormIterator>
-          <FileInput source="file" label="Array Form Files">
-            <FileField source="src" title="title" />
-          </FileInput>
+          <ReferenceInput label="Cooks Id" reference="Cooks">
+            <SelectInput optionText="Name" />
+          </ReferenceInput>
         </SimpleFormIterator>
-      </ArrayInput> */}
+      </ArrayInput>
+    </SimpleForm>
+  </Create>
+);
+
+export const ManagerEdit = (props) => (
+  <Edit {...props}>
+    <SimpleForm>
+      <TextInput source="Name" />
+
+      {/* <ReferenceInput
+        label="User Ref"
+        source="user_ref.___refid"
+        reference="users"
+      >
+        <SelectInput optionText="name" />
+      </ReferenceInput> */}
+
+      {/* Or use the easier <FirebaseReferenceInput> */}
+
+      {/* <FirebaseReferenceInput
+        label="User Ref (Firebase)"
+        source="user_ref"
+        reference="Users"
+      >
+        <SelectInput optionText="name" />
+      </FirebaseReferenceInput> */}
 
       <ArrayInput source="Cooks">
         <SimpleFormIterator>
-          <ReferenceInput
-            label="Cooks Id"
-            // source="Cooks"
-            reference="Cooks"
-            // filter={{ isAdmin: true }}
-          >
+          <ReferenceInput label="Cooks Id" reference="Cooks">
             <SelectInput optionText="Name" />
           </ReferenceInput>
-          {/* <FileInput source="file" label="Array Form Files">
-            <FileField source="src" title="title" />
-          </FileInput> */}
         </SimpleFormIterator>
       </ArrayInput>
-
-      {/* <ArrayInput source="sections.mySection.items" label="Section items">
-        <SimpleFormIterator>
-          <TextInput source="name" label="Name" />
-          <ImageInput source="image" label="Image" accept="image/*">
-            <ImageField source="src" title="title" />
-          </ImageInput>
-        </SimpleFormIterator>
-      </ArrayInput> */}
     </SimpleForm>
-  </Create>
+  </Edit>
 );
 
 export const PostEdit = (props) => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput disabled source="id" />
-      <DateField source="createdate" />
-      <DateField source="lastupdate" />
-      <TextInput source="title" />
+      {/* <DateField source="createdate" /> */}
+      {/* <DateField source="lastupdate" /> */}
+      <TextInput source="Name" />
       <RichTextInput source="body" />
       <ReferenceInput
         label="User Id"

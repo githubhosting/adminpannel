@@ -12,6 +12,7 @@ import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 // tslint:disable-next-line:no-var-requires
 import {
   Datagrid,
+  Resource,
   List,
   Show,
   Create,
@@ -572,7 +573,13 @@ export const CookList = (props) => {
 //     </Datagrid>
 //   </List>
 // );
-
+export const CookShowi = (props) => (
+  <Show {...props}>
+    <Datagrid>
+      <TextField source="Menu" />
+    </Datagrid>
+  </Show>
+);
 export const CookShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
@@ -588,8 +595,10 @@ export const CookShow = (props) => (
 
       {/* <TextField source="isAdmin" /> */}
     </SimpleShowLayout>
+    {/* <Resource name="Cooks" list={CookShowi} /> */}
   </Show>
 );
+
 export const CookCreate = (props) => (
   <Create {...props}>
     <SimpleForm>

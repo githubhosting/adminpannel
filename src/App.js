@@ -1,5 +1,12 @@
 import * as React from 'react';
-import { PostList, PostShow, PostCreate, PostEdit, ManagerShow } from './posts';
+import {
+  PostList,
+  PostShow,
+  PostCreate,
+  PostEdit,
+  ManagerShow,
+  ManagerEdit,
+} from './posts';
 
 import {
   UserList,
@@ -212,7 +219,7 @@ class App extends React.Component {
             list={PostList}
             show={ManagerShow}
             create={PostCreate}
-            edit={PostEdit}
+            edit={ManagerEdit}
           />
           {/* <Resource
             name="Comments"
