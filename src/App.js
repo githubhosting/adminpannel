@@ -28,6 +28,11 @@ import {
   MenuEdit,
   BlogCreate,
   BlogEdit,
+  CloudKitchenList,
+  CloudKitchenShow,
+  CloudKitchenCreate,
+  CloudKitchenEdit,
+
 } from './users';
 import {
   CommentsList,
@@ -190,12 +195,12 @@ class App extends React.Component {
             edit={UserEdit}
           />
           <Resource
-            name="Cloud Kitchen"
+            name="Cloud_Kitchen"
             icon={SoupKitchenIcon}
-            list={UserList}
-            show={UserShow}
-            create={UserCreate}
-            edit={UserEdit}
+            list={CloudKitchenList}
+            show={CloudKitchenShow}
+            create={CloudKitchenCreate}
+            edit={CloudKitchenEdit}
           />
           <Resource
             name="Menu"

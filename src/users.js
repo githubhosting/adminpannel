@@ -49,6 +49,7 @@ import {
   useTranslate,
   RecordContextProvider,
   useListContext,
+  Admin,
 } from 'react-admin';
 // import ColoredNumberField from "./ColoredNumberField";
 
@@ -576,10 +577,11 @@ export const CookList = (props) => {
 export const CookShowi = (props) => (
   <Show {...props}>
     <Datagrid>
-      <TextField source="Menu" />
+      <TextField source="Friday" />
     </Datagrid>
   </Show>
 );
+
 export const CookShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
@@ -591,7 +593,7 @@ export const CookShow = (props) => (
       <TextField source="State" />
       <TextField source="Speciality" />
       <TextField source="Year_Of_Experience" />
-      <TextField source="Menu.Friday" />
+      <TextField source="" />
 
       {/* <TextField source="isAdmin" /> */}
     </SimpleShowLayout>
@@ -636,4 +638,102 @@ export const UserCreated = (props) => (
       <TextInput source="age" />
     </SimpleForm>
   </Create>
+);
+
+// ......Cloud Kitchen........
+
+export const CloudKitchenList = (props) => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+  const record = useRecordContext();
+  return (
+    <List {...props} filters={<UserFilter />}>
+      {isSmall ? (
+        <SimpleList
+          sx={{
+            borderRadius: '0.5rem',
+            boxShadow: '0 0 0.6rem rgba(0,0,0,0.1)',
+          }}
+          linkType="show"
+          primaryText={(record) => <b>{record.Name}</b>}
+          secondaryText={(record) => `Location: ${record.Location}`}
+        />
+      ) : (
+        <Datagrid expand={<CloudKitchenDrop />} rowClick="expand">
+          <TextField source="Name" />
+          <TextField source="Location" />
+          {/* <TextField source="lastupdate" /> */}
+          <ShowButton label="Show" />
+          <EditButton sx={{ fontWeight: 'bold' }} label="Edit" />
+          <DeleteWithConfirmButton
+            confirmContent="You will not be able to recover this record. Are you sure?"
+            label="Delete"
+            translateOptions={(record) => record.name}
+            redirect={false}
+          />
+        </Datagrid>
+      )}
+    </List>
+  );
+};
+
+export const CloudKitchenDrop = (props) => (
+  <Show {...props} actions="">
+    <SimpleShowLayout>
+      <TextField source="id" />
+      <TextField source="Latitude" />
+      <TextField source="Longitude" />
+      <NumberField source="Ratings" />
+      <TextField source="Reviews" />
+    </SimpleShowLayout>
+  </Show>
+);
+
+export const CloudKitchenShow = (props) => (
+  <Show {...props}>
+    <SimpleShowLayout>
+      <TextField source="id" />
+      <TextField source="Name" />
+      <ImageField source="Image" />
+      <TextField source="Location" />
+      <TextField source="Latitude" />
+
+      <TextField source="Ratings" />
+      <TextField source="Reviews" />
+      <TextField source="createdate" />
+    </SimpleShowLayout>
+  </Show>
+);
+export const CloudKitchenCreate = (props) => (
+  <Create {...props}>
+    <SimpleForm>
+    <TextInput disabled source="id" />
+      <TextInput source="Image" />
+      {/* <TextInput disabled source="createdate" /> */}
+      {/* <TextInput disabled source="lastupdate" /> */}
+      <NumberInput source="Latitude" />
+      <NumberInput source="Longitude" />
+      <TextInput source="Location" />
+
+      <TextInput source="Name" />
+      <NumberInput source="Ratings" />
+      <TextInput source="Reviews" />
+    </SimpleForm>
+  </Create>
+);
+export const CloudKitchenEdit = (props) => (
+  <Edit {...props}>
+    <SimpleForm>
+      <TextInput disabled source="id" />
+      <TextInput source="Image" />
+      {/* <TextInput disabled source="createdate" /> */}
+      {/* <TextInput disabled source="lastupdate" /> */}
+      <NumberInput source="Latitude" />
+      <NumberInput source="Longitude" />
+      <TextInput source="Location" />
+
+      <TextInput source="Name" />
+      <NumberInput source="Ratings" />
+      <TextInput source="Reviews" />
+    </SimpleForm>
+  </Edit>
 );

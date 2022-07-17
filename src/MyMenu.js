@@ -26,7 +26,7 @@ export const MyMenu = (props) => (
       leftIcon={<CustomerIcon />}
     />
     <MenuItemLink
-      to="/Cloud Kitchen"
+      to="/Cloud_Kitchen"
       primaryText="Cloud Kitchens"
       leftIcon={<SoupKitchenIcon />}
     />
