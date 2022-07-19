@@ -10,6 +10,7 @@ import ImageIcon from '@material-ui/icons/Image';
 import WorkIcon from '@material-ui/icons/Work';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 // tslint:disable-next-line:no-var-requires
+import getFirebaseApp1 from './App';
 import {
   Datagrid,
   Resource,
@@ -49,6 +50,7 @@ import {
   useTranslate,
   RecordContextProvider,
   useListContext,
+  ReferenceArrayField,
   Admin,
 } from 'react-admin';
 // import ColoredNumberField from "./ColoredNumberField";
@@ -587,13 +589,30 @@ export const CookShow = (props) => (
     <SimpleShowLayout>
       <TextField source="id" />
       <TextField source="Name" />
+      <ReferenceField
+        label="Cloud Kitchen"
+        reference="Cloud_Kitchen"
+        source="Cloud"
+      >
+        <TextField source="Name" />
+      </ReferenceField>
+
+      <ReferenceArrayField
+        label="Clouds Assigned"
+        source="Cloud"
+        reference="Cloud_Kitchen"
+      >
+        <Datagrid rowClick="show" isRowSelectable={(record) => false}>
+          <TextField source="Name" />
+        </Datagrid>
+      </ReferenceArrayField>
+
       <TextField source="Cloud" />
       <NumberField source="Ratings" />
       <TextField source="Region" />
       <TextField source="State" />
       <TextField source="Speciality" />
       <TextField source="Year_Of_Experience" />
-      <TextField source="" />
 
       {/* <TextField source="isAdmin" /> */}
     </SimpleShowLayout>
@@ -696,7 +715,7 @@ export const CloudKitchenShow = (props) => (
       <ImageField source="Image" />
       <TextField source="Location" />
       <TextField source="Latitude" />
-
+      <TextField source="Longitude" />
       <TextField source="Ratings" />
       <TextField source="Reviews" />
       <TextField source="createdate" />
@@ -706,7 +725,6 @@ export const CloudKitchenShow = (props) => (
 export const CloudKitchenCreate = (props) => (
   <Create {...props}>
     <SimpleForm>
-    <TextInput disabled source="id" />
       <TextInput source="Image" />
       {/* <TextInput disabled source="createdate" /> */}
       {/* <TextInput disabled source="lastupdate" /> */}
@@ -723,7 +741,6 @@ export const CloudKitchenCreate = (props) => (
 export const CloudKitchenEdit = (props) => (
   <Edit {...props}>
     <SimpleForm>
-      <TextInput disabled source="id" />
       <TextInput source="Image" />
       {/* <TextInput disabled source="createdate" /> */}
       {/* <TextInput disabled source="lastupdate" /> */}

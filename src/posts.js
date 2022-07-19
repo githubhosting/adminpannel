@@ -140,6 +140,15 @@ export const ManagerShow = (props) => (
       <TextField source="id" />
       <TextField sx={{ fontWeight: 'bold' }} source="Name" />
       <TextField source="Cloud" />
+      <ReferenceArrayField
+        label="Clouds Assigned"
+        source="Cloud"
+        reference="Cloud_Kitchen"
+      >
+        <Datagrid rowClick="show" isRowSelectable={(record) => false}>
+          <TextField source="Name" />
+        </Datagrid>
+      </ReferenceArrayField>
 
       {/* <TextField source="Cooks" /> */}
 
@@ -155,6 +164,15 @@ export const ManagerShow = (props) => (
         <Datagrid rowClick="show" isRowSelectable={(record) => false}>
           {/* <TextField source="id" /> */}
           <TextField source="Name" />
+          <ReferenceArrayField
+            label="Clouds Assigned"
+            source="Cloud"
+            reference="Cloud_Kitchen"
+          >
+            <Datagrid rowClick="show" isRowSelectable={(record) => false}>
+              <TextField source="Name" />
+            </Datagrid>
+          </ReferenceArrayField>
           {/* <ShowButton label="Show" /> */}
         </Datagrid>
         {/* <SingleFieldList
