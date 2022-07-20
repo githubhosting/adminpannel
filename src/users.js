@@ -117,16 +117,6 @@ export const UserDrop = (props) => (
     </SimpleShowLayout>
   </Show>
 );
-export const CookDrop = (props) => (
-  <Show {...props} actions="">
-    <SimpleShowLayout>
-      <TextField source="id" />
-      <TextField source="Region" />
-      <TextField source="State" />
-      <TextField source="Speciality" />
-    </SimpleShowLayout>
-  </Show>
-);
 
 export const UserCreate = (props) => (
   <Create {...props}>
@@ -572,20 +562,17 @@ export const CookList = (props) => {
     </List>
   );
 };
-// export const CookList = (props) => (
-//   <List {...props} filters={<UserFilter />}>
-//     <Datagrid rowClick="show">
-//       <TextField source="Name" />
-//       <TextField source="Region" />
-//       <TextField source="State" />
-//       <NumberField source="Ratings" />
-//       {/* <TextField source="lastupdate" /> */}
-//       <ShowButton label="" />
-//       <EditButton label="" />
-//       <DeleteWithConfirmButton label="" redirect={false} />
-//     </Datagrid>
-//   </List>
-// );
+export const CookDrop = (props) => (
+  <Show {...props} actions="">
+    <SimpleShowLayout>
+      <TextField source="id" />
+      <TextField source="Region" />
+      <TextField source="State" />
+      <TextField source="Speciality" />
+    </SimpleShowLayout>
+  </Show>
+);
+
 export const CookShowi = (props) => (
   <Show {...props}>
     <Datagrid>
@@ -598,22 +585,20 @@ export const CookShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
       <TextField source="id" />
-      <TextField source="Name" />
+      <TextField sx={{ fontWeight: 'bold' }} source="Name" />
       <ReferenceField
         label="Cloud Kitchen"
         reference="Cloud_Kitchen"
         source="Cloud"
+        link="show"
       >
         <TextField source="Name" />
       </ReferenceField>
-      {/* <TextField source="Cloud" /> */}
       <NumberField source="Ratings" />
       <TextField source="Region" />
       <TextField source="State" />
       <TextField source="Speciality" />
       <TextField source="Year_Of_Experience" />
-
-      {/* <TextField source="isAdmin" /> */}
     </SimpleShowLayout>
     {/* <Resource name="Cooks" list={CookShowi} /> */}
   </Show>
@@ -679,7 +664,6 @@ export const CloudKitchenList = (props) => {
         <Datagrid expand={<CloudKitchenDrop />} rowClick="expand">
           <TextField source="Name" />
           <TextField source="Location" />
-          {/* <TextField source="lastupdate" /> */}
           <ShowButton label="Show" />
           <EditButton sx={{ fontWeight: 'bold' }} label="Edit" />
           <DeleteWithConfirmButton
@@ -717,8 +701,6 @@ export const CloudKitchenShow = (props) => (
       <TextField source="Longitude" />
       <TextField source="Ratings" />
       <TextField source="Reviews" />
-      <TextField source="createdate" />
-      {/* <TextField source="Cooks" /> */}
       <ReferenceArrayField source="Cooks" reference="Cooks">
         <Datagrid rowClick="show" isRowSelectable={(record) => false}>
           <TextField source="Name" />
@@ -731,12 +713,9 @@ export const CloudKitchenCreate = (props) => (
   <Create {...props}>
     <SimpleForm>
       <TextInput source="Image" />
-      {/* <TextInput disabled source="createdate" /> */}
-      {/* <TextInput disabled source="lastupdate" /> */}
       <NumberInput source="Latitude" />
       <NumberInput source="Longitude" />
       <TextInput source="Location" />
-
       <TextInput source="Name" />
       <NumberInput source="Ratings" />
       <TextInput source="Reviews" />
@@ -747,8 +726,6 @@ export const CloudKitchenEdit = (props) => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput source="Image" />
-      {/* <TextInput disabled source="createdate" /> */}
-      {/* <TextInput disabled source="lastupdate" /> */}
       <NumberInput source="Latitude" />
       <NumberInput source="Longitude" />
       <TextInput source="Location" />
