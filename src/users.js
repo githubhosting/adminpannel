@@ -117,6 +117,16 @@ export const UserDrop = (props) => (
     </SimpleShowLayout>
   </Show>
 );
+export const CookDrop = (props) => (
+  <Show {...props} actions="">
+    <SimpleShowLayout>
+      <TextField source="id" />
+      <TextField source="Region" />
+      <TextField source="State" />
+      <TextField source="Speciality" />
+    </SimpleShowLayout>
+  </Show>
+);
 
 export const UserCreate = (props) => (
   <Create {...props}>
@@ -541,8 +551,8 @@ export const CookList = (props) => {
             borderRadius: '0.5rem',
             boxShadow: '0 0 0.6rem rgba(0,0,0,0.1)',
           }}
-          expand={<UserDrop />}
-          rowClick="show"
+          expand={<CookDrop />}
+          rowClick="expand"
         >
           <TextField source="Name" />
           <TextField source="Region" />
@@ -596,17 +606,6 @@ export const CookShow = (props) => (
       >
         <TextField source="Name" />
       </ReferenceField>
-
-      <ReferenceArrayField
-        label="Clouds Assigned"
-        source="Cloud"
-        reference="Cloud_Kitchen"
-      >
-        <Datagrid rowClick="show" isRowSelectable={(record) => false}>
-          <TextField source="Name" />
-        </Datagrid>
-      </ReferenceArrayField>
-
       <TextField source="Cloud" />
       <NumberField source="Ratings" />
       <TextField source="Region" />
@@ -747,7 +746,6 @@ export const CloudKitchenEdit = (props) => (
       <NumberInput source="Latitude" />
       <NumberInput source="Longitude" />
       <TextInput source="Location" />
-
       <TextInput source="Name" />
       <NumberInput source="Ratings" />
       <TextInput source="Reviews" />
