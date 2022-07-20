@@ -606,7 +606,7 @@ export const CookShow = (props) => (
       >
         <TextField source="Name" />
       </ReferenceField>
-      <TextField source="Cloud" />
+      {/* <TextField source="Cloud" /> */}
       <NumberField source="Ratings" />
       <TextField source="Region" />
       <TextField source="State" />
@@ -718,6 +718,12 @@ export const CloudKitchenShow = (props) => (
       <TextField source="Ratings" />
       <TextField source="Reviews" />
       <TextField source="createdate" />
+      {/* <TextField source="Cooks" /> */}
+      <ReferenceArrayField source="Cooks" reference="Cooks">
+        <Datagrid rowClick="show" isRowSelectable={(record) => false}>
+          <TextField source="Name" />
+        </Datagrid>
+      </ReferenceArrayField>
     </SimpleShowLayout>
   </Show>
 );
