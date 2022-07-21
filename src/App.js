@@ -74,6 +74,7 @@ import EventMonitor from './EventMonitor';
 import Dashboard from './Dashboard';
 import Settings from './Settings';
 import MyPage from './MyPage';
+import CooksMenu from './CooksMenu';
 // import Dashboard from './Dashboard_test';
 
 // let firebaseConfig;
@@ -238,6 +239,7 @@ class App extends React.Component {
           <CustomRoutes>
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/CooksMenu" element={<CooksMenu />} />
           </CustomRoutes>
         </Admin>
 

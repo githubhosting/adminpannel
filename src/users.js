@@ -27,7 +27,6 @@ import {
   EditButton,
   DeleteButton,
   EmailField,
-
   DeleteWithConfirmButton,
   Toolbar,
   SaveButton,
@@ -705,10 +704,7 @@ export const CloudKitchenShow = (props) => (
       <TextField source="Ratings" />
       <TextField source="Reviews" />
       <ReferenceArrayField source="Cooks" reference="Cooks">
-        <Datagrid
-          rowClick="show"
-          bulkActionButtons={false}
-        >
+        <Datagrid rowClick="show" bulkActionButtons={false}>
           <TextField source="Name" />
         </Datagrid>
       </ReferenceArrayField>
@@ -746,6 +742,13 @@ export const CloudKitchenEdit = (props) => (
       <TextInput source="Name" />
       <NumberInput source="Ratings" />
       <TextInput source="Reviews" />
+      <ReferenceArrayInput
+        label="Cooks Assigned"
+        reference="Cooks"
+        source="Cooks"
+      >
+        <SelectArrayInput label="Cooks Assigned" optionText="Name" />
+      </ReferenceArrayInput>
     </SimpleForm>
   </Edit>
 );

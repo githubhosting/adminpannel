@@ -14,6 +14,7 @@ import SoupKitchenIcon from '@material-ui/icons/Kitchen';
 import Private from '@material-ui/icons/Lock';
 import Settings from '@material-ui/icons/Settings';
 import Badge from '@mui/material/Badge';
+import { MenuBook } from '@material-ui/icons';
 
 export const MyMenu = (props) => (
   <Menu {...props}>
@@ -21,7 +22,7 @@ export const MyMenu = (props) => (
     <MenuItemLink to="/Users" primaryText="Users" leftIcon={<UserIcon />} />
     <MenuItemLink to="/Cooks" primaryText="Cooks" leftIcon={<CookIcon />} />
     <MenuItemLink
-      to="/Customers"
+      to="/customers"
       primaryText="Customers"
       leftIcon={<CustomerIcon />}
     />
@@ -43,6 +44,11 @@ export const MyMenu = (props) => (
       to="/settings"
       primaryText="Settings"
       leftIcon={<Settings />}
+    />
+    <MenuItemLink
+      to="/CooksMenu"
+      primaryText="CooksMenu"
+      leftIcon={<MenuBook />}
     />
     {/* <MenuItemLink to="/custom-route" primaryText="Miscellaneous" leftIcon={<LabelIcon />}/> */}
   </Menu>
