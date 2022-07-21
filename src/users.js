@@ -26,6 +26,8 @@ import {
   ShowButton,
   EditButton,
   DeleteButton,
+  EmailField,
+
   DeleteWithConfirmButton,
   Toolbar,
   SaveButton,
@@ -52,6 +54,7 @@ import {
   useListContext,
   ReferenceArrayField,
   Admin,
+  SelectArrayInput,
 } from 'react-admin';
 // import ColoredNumberField from "./ColoredNumberField";
 
@@ -119,7 +122,7 @@ export const UserDrop = (props) => (
 );
 
 export const UserCreate = (props) => (
-  <Create {...props}>
+  <Create {...props} redirect="show">
     <SimpleForm>
       <TextInput source="name" />
       <TextInput source="phone" />
@@ -462,7 +465,7 @@ export const UserList7 = (props) => {
         >
           <Avatar source="avatar" />
           <TextField source="name" />
-          <TextField source="email" />
+          <EmailField source="email" />
           <TextField source="phone" />
           {/* <TextField source="lastupdate" /> */}
           <ShowButton sx={{ fontWeight: 'bold' }} label="Show" />
@@ -621,10 +624,10 @@ export const CookEdit = (props) => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput disabled source="id" />
-      <TextInput disabled source="createdate" />
-      <TextInput disabled source="lastupdate" />
       <TextInput source="Name" />
-      <TextInput source="Cloud" />
+      <ReferenceInput source="Cloud" reference="Cloud_Kitchen">
+        <SelectInput optionText="Name" />
+      </ReferenceInput>
       <NumberInput source="Ratings" />
       <TextInput source="Region" />
       <TextInput source="State" />
@@ -702,13 +705,24 @@ export const CloudKitchenShow = (props) => (
       <TextField source="Ratings" />
       <TextField source="Reviews" />
       <ReferenceArrayField source="Cooks" reference="Cooks">
-        <Datagrid rowClick="show" isRowSelectable={(record) => false}>
+        <Datagrid
+          rowClick="show"
+          bulkActionButtons={false}
+        >
           <TextField source="Name" />
         </Datagrid>
       </ReferenceArrayField>
     </SimpleShowLayout>
   </Show>
 );
+// const Aside = () => (
+//   <Box sx={{ width: '200px', margin: '1em' }}>
+//     <Typography variant="h6">Instructions</Typography>
+//     <Typography variant="body2">
+//       Posts will only be published once an editor approves them
+//     </Typography>
+//   </Box>
+// );
 export const CloudKitchenCreate = (props) => (
   <Create {...props}>
     <SimpleForm>

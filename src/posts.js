@@ -24,6 +24,8 @@ import {
   FileField,
   ArrayInput,
   ReferenceArrayField,
+  ReferenceArrayInput,
+  SelectArrayInput,
   SimpleFormIterator,
   DateInput,
   ArrayField,
@@ -139,16 +141,13 @@ export const ManagerShow = (props) => (
     <SimpleShowLayout>
       <TextField source="id" />
       <TextField sx={{ fontWeight: 'bold' }} source="Name" />
-      <TextField source="Cloud" />
-      <ReferenceArrayField
-        label="Clouds Assigned"
+      <ReferenceField
+        label="Cloud Assigned"
         source="Cloud"
         reference="Cloud_Kitchen"
       >
-        <Datagrid rowClick="show" isRowSelectable={(record) => false}>
-          <TextField source="Name" />
-        </Datagrid>
-      </ReferenceArrayField>
+        <TextField source="Name" />
+      </ReferenceField>
 
       {/* <TextField source="Cooks" /> */}
 
@@ -161,18 +160,9 @@ export const ManagerShow = (props) => (
         reference="Cooks"
         source="Cooks"
       >
-        <Datagrid rowClick="show" isRowSelectable={(record) => false}>
+        <Datagrid rowClick="show" bulkActionButtons={false}>
           {/* <TextField source="id" /> */}
           <TextField source="Name" />
-          <ReferenceArrayField
-            label="Clouds Assigned"
-            source="Cloud"
-            reference="Cloud_Kitchen"
-          >
-            <Datagrid rowClick="show" isRowSelectable={(record) => false}>
-              <TextField source="Name" />
-            </Datagrid>
-          </ReferenceArrayField>
           {/* <ShowButton label="Show" /> */}
         </Datagrid>
         {/* <SingleFieldList
@@ -210,7 +200,7 @@ export const ManagerShow = (props) => (
 );
 
 export const PostCreate = (props) => (
-  <Create {...props}>
+  <Create {...props} redirect="show">
     <SimpleForm>
       <TextInput source="Name" />
 
@@ -232,13 +222,20 @@ export const PostCreate = (props) => (
         <SelectInput optionText="name" />
       </FirebaseReferenceInput> */}
 
-      <ArrayInput source="Cooks">
-        <SimpleFormIterator>
-          <ReferenceInput label="Cooks Id" reference="Cooks">
-            <SelectInput optionText="Name" />
-          </ReferenceInput>
-        </SimpleFormIterator>
-      </ArrayInput>
+      <ReferenceArrayInput
+        label="Cooks Assigned"
+        reference="Cooks"
+        source="Cooks"
+      >
+        <SelectArrayInput optionText="Name" />
+      </ReferenceArrayInput>
+      <ReferenceInput
+        label="Cloud Assigned"
+        source="Cloud"
+        reference="Cloud_Kitchen"
+      >
+        <SelectInput optionText="Name" />
+      </ReferenceInput>
     </SimpleForm>
   </Create>
 );
@@ -247,35 +244,54 @@ export const ManagerEdit = (props) => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput source="Name" />
-
-      {/* <ReferenceInput
-        label="User Ref"
-        source="user_ref.___refid"
-        reference="users"
-      >
-        <SelectInput optionText="name" />
-      </ReferenceInput> */}
-
-      {/* Or use the easier <FirebaseReferenceInput> */}
-
-      {/* <FirebaseReferenceInput
-        label="User Ref (Firebase)"
-        source="user_ref"
-        reference="Users"
-      >
-        <SelectInput optionText="name" />
-      </FirebaseReferenceInput> */}
-
-      <ArrayInput source="Cooks">
+      {/* <ArrayInput source="Cooks">
         <SimpleFormIterator>
           <ReferenceInput label="Cooks Id" reference="Cooks">
             <SelectInput optionText="Name" />
           </ReferenceInput>
         </SimpleFormIterator>
-      </ArrayInput>
+      </ArrayInput> */}
+      <ReferenceArrayInput
+        label="Cooks Assigned"
+        reference="Cooks"
+        source="Cooks"
+      >
+        <SelectArrayInput optionText="Name" />
+      </ReferenceArrayInput>
+      <ReferenceInput
+        label="Cloud Assigned"
+        source="Cloud"
+        reference="Cloud_Kitchen"
+      >
+        <SelectInput optionText="Name" />
+      </ReferenceInput>
     </SimpleForm>
   </Edit>
 );
+
+{
+  /* <ReferenceInput
+        label="User Ref"
+        source="user_ref.___refid"
+        reference="users"
+      >
+        <SelectInput optionText="name" />
+      </ReferenceInput> */
+}
+
+{
+  /* Or use the easier <FirebaseReferenceInput> */
+}
+
+{
+  /* <FirebaseReferenceInput
+        label="User Ref (Firebase)"
+        source="user_ref"
+        reference="Users"
+      >
+        <SelectInput optionText="name" />
+      </FirebaseReferenceInput> */
+}
 
 export const PostEdit = (props) => (
   <Edit {...props}>

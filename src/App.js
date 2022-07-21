@@ -64,7 +64,6 @@ import UserIcon from '@material-ui/icons/Person';
 import ManagerIcon from '@material-ui/icons/SupervisorAccount';
 import CookIcon from '@material-ui/icons/Restaurant';
 import SoupKitchenIcon from '@material-ui/icons/Kitchen';
-// import SoupKitchenIcon from '@mui/icons-material/SoupKitchen';
 
 import * as Posts from './posts';
 import * as Users from './users';
@@ -224,6 +223,8 @@ class App extends React.Component {
             show={ManagerShow}
             create={PostCreate}
             edit={ManagerEdit}
+            // show={ShowGuesser}
+            // edit={EditGuesser}
           />
           {/* <Resource
             name="Comments"
