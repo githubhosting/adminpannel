@@ -135,7 +135,7 @@ const dataProvider = FirebaseDataProvider(firebaseConfig, {
   // watch: ['posts'];
   // dontwatch: ['comments'];
   persistence: 'local',
-  // disableMeta: true
+  disableMeta: true,
   dontAddIdFieldToDoc: true,
   lazyLoading: {
     enabled: true,
