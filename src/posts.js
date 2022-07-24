@@ -33,6 +33,7 @@ import {
   SelectField,
   SingleFieldList,
   ChipField,
+  Resource,
 } from 'react-admin';
 import { RichTextInput } from 'ra-input-rich-text';
 import {
@@ -235,6 +236,20 @@ export const PostCreate = (props) => (
         reference="Cloud_Kitchen"
       >
         <SelectInput optionText="Name" />
+      </ReferenceInput>
+    </SimpleForm>
+  </Create>
+);
+export const Postcreate1 = (props) => (
+  <Create {...props}>
+    <SimpleForm>
+      <TextInput source="Name" />
+      <ReferenceInput
+        label="User Ref"
+        source="user_ref.___refid"
+        reference="users"
+      >
+        <SelectInput optionText="name" />
       </ReferenceInput>
     </SimpleForm>
   </Create>

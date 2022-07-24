@@ -90,7 +90,7 @@ import { createTheme, Box, Typography } from '@mui/material';
 const theme = {
   ...defaultTheme,
   palette: {
-    mode: 'dark', // Switching the dark mode on is a single property value change.
+    mode: 'light',
   },
 };
 const firebaseApp = firebase.initializeApp(firebaseConfig);

@@ -5,7 +5,18 @@ import { defaultTheme, Layout, AppBar, ToggleThemeButton } from 'react-admin';
 import { createTheme, Box, Typography } from '@mui/material';
 
 const darkTheme = createTheme({
-  palette: { mode: 'dark' },
+  palette: {
+    mode: 'dark',
+    secondary: { main: '#f50057' },
+    background: { paper: '#000000' },
+    text: { primary: '#fff' },
+    divider: '#424242',
+    action: { hover: '#424242' },
+    error: { main: '#f50057' },
+    success: { main: '#f50057' },
+    info: { main: '#f50057' },
+    warning: { main: '#f50057' },
+  },
 });
 
 const MyAppBar = (props) => (

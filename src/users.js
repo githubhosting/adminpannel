@@ -696,7 +696,7 @@ export const CloudKitchenShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
       <TextField source="id" />
-      <TextField source="Name" />
+      <TextField sx={{ fontWeight: 'bold',  }} source="Name" />
       <ImageField source="Image" />
       <TextField source="Location" />
       <TextField source="Latitude" />
