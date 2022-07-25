@@ -17,3 +17,12 @@ export const firebaseConfig = {
 //   appId: "1:595971213871:web:432717a56846feb84a14da",
 //   measurementId: "G-BJWWD8H4BX"
 // }
+// export const firebaseConfig = {
+//   apiKey: 'AIzaSyDQXMsyejsUgPj-1ZPIyL9YMKdhZ280Mwo',
+//   authDomain: 'cinema-schedule-7bfa4.firebaseapp.com',
+//   databaseURL: 'https://cinema-schedule-7bfa4.firebaseio.com',
+//   projectId: 'cinema-schedule-7bfa4',
+//   storageBucket: 'cinema-schedule-7bfa4.appspot.com',
+//   messagingSenderId: '215540682675',
+//   appId: '1:215540682675:web:6e6e792cb9f041ae8e05c6',
+// };
